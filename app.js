@@ -1,4 +1,3 @@
-
 // **************************************************************************************************
 
 // READ THIS FIRST
@@ -23,11 +22,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require('mongoose');
+var $ = require('jquery');
 
 const app = express();
 
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.static("public"));
 
 var request = require("request");
@@ -35,7 +37,10 @@ var request = require("request");
 var options = {
   method: 'GET',
   url: 'https://imdb8.p.rapidapi.com/title/get-overview-details',
-  qs: {currentCountry: 'US', tconst: 'tt4574334'},
+  qs: {
+    currentCountry: 'US',
+    tconst: 'tt4574334'
+  },
   headers: {
     'x-rapidapi-host': 'imdb8.p.rapidapi.com',
     'x-rapidapi-key': '266ef19794msha90348685a1c992p155c55jsn7040d1b68eb5', //use own key
@@ -48,33 +53,55 @@ var options = {
 // 	console.log(jsObj);
 // });
 
-var findTitle = {
-  method: 'GET',
-  url: 'https://imdb8.p.rapidapi.com/title/find',
-  qs: {currentCountry: 'US', q: 'shubh mangal savdhan'},
-  headers: {
-    'x-rapidapi-host': 'imdb8.p.rapidapi.com',
-    'x-rapidapi-key': '266ef19794msha90348685a1c992p155c55jsn7040d1b68eb5', //use own key
-    useQueryString: true
-  }
-};
-// request(findTitle, function (error, response, body) {
-// 	if (error) throw new Error(error);
-//   const jsObj = JSON.parse(body);
-// 	console.log(jsObj);
-// });
 
-app.get("/",function(req,res){
+
+app.get("/", function(req, res) {
   // res.send("hattbc");
   res.render("home");
 });
 
-app.get("/signin",function(req,res){
+app.get("/signin", function(req, res) {
   res.render("signin");
 });
 
-app.get("/toprated",function(req,res){
+app.get("/toprated", function(req, res) {
   res.render("toprated");
+});
+
+let movieName = "";
+app.get("/search", function(req, res) {
+  if (movieName.length === 0) {
+    res.write("<h1>Looks like you haven't searched for anything.</h1>");
+    res.write("<p>Go back to search for a movie/show</p>");
+    res.send();
+  } else {
+    var findTitle = {
+      method: 'GET',
+      url: 'https://imdb8.p.rapidapi.com/title/find',
+      qs: {
+        currentCountry: 'US',
+        q: movieName
+      },
+      headers: {
+        'x-rapidapi-host': 'imdb8.p.rapidapi.com',
+        'x-rapidapi-key': '266ef19794msha90348685a1c992p155c55jsn7040d1b68eb5', //use own key
+        useQueryString: true
+      }
+    }
+    //Now I have to send these results to search.ejs
+    request(findTitle, function(error, response, body) {
+      if (error) throw new Error(error);
+      const jsObj = JSON.parse(body);
+      res.render("search", {results: jsObj.results});
+    });
+  }
+});
+//searching Movies
+app.post("/search", function(req, res) {
+
+  movieName = req.body.movieName;
+  console.log(movieName);
+  res.redirect("/search");
 });
 
 app.listen(3000, function() {

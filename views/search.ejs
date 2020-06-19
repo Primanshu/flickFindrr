@@ -1,2 +1,14 @@
 <%- include("header.ejs") -%>
-<%- include(footer.ejs") -%>
+
+<% for(var i=0; i<results.length; i++){ %>
+<%if('title' in results[i]){ %>
+<%const movieTitle = results[i].title; %>
+<%var movieId = results[i].id; %>
+<%movieId = movieId.slice(7,16); %>
+<a>
+  <h4><%= movieTitle %></h4>
+</a>
+<%}%>
+<%}%>
+
+<%- include("footer.ejs") -%>
