@@ -1,2 +1,92 @@
 <%- include("header.ejs") -%>
-<%- include("footer.ejs") -%>
+  <!-- <link rel="stylesheet" href="css/show.css"> -->
+    <div class="container">
+
+    <h1><%= title%></h1>
+
+    <div class=" grid">
+        <div class="poster">
+          <img src=" <%=url%>" alt="No image">
+        </div>
+
+        <div class="nested">
+          <div class="nested-item">
+            <%= rating%>
+          </div>
+          <div class="nested-item">
+            <%= genres%>
+          </div>
+          <div class="nested-item">
+            <%= titleType%>(<%= year%>)
+          </div>
+        </div>
+    </div>
+    <p><%= synopsis%></p>
+    <%if(titleType == 'movie'){%>
+      <% var first = true%>
+      <p>Director :
+        <%directors.forEach(function(director){%>
+          <%if(!first){%>
+            ,
+          <%}%>
+          <%=director.name%>
+          <% var first = false%>
+        <%});%>
+      </p>
+      <% first = true%>
+      <p>Writers :
+        <%writers.forEach(function(writer){%>
+          <%if(!first){%>
+            ,
+          <%}%>
+          <%=writer.name%>
+          <% first = false%>
+        <%});%>
+      </p>
+    <%}else if(titleType == 'tvSeries'){%>
+      <% var first = true%>
+      <p>Creators :
+        <%writers.forEach(function(writer){%>
+          <%if(!first){%>
+            ,
+          <%}%>
+          <%=writer.name%>
+          <% first = false%>
+        <%});%>
+      </p>
+    <%}%>
+
+    <form class="" action="/updateWatchlist" method="post">
+      <button type="submit" name="button">Add to watchlist +</button>
+    </form>
+
+    <h2>Summary</h2>
+    <p><%= summary %></p>
+
+    <h2>User Reviews</h2>
+
+    <% for(var i=0;i<=1 && i< reviews.length ;i++){ %>
+      <h4><%=reviews[i].reviewTitle%></h4>
+      <p>By <%= reviews[i].author.displayName %> on <%=reviews[i].submissionDate%></p>
+      <p><%= reviews[i].reviewText %></p>
+    <%}%>
+
+    <h4>comments</h4>
+    <form class="" action="/comment" method="post">
+      <input type="text" name="" placeholder="Give us your thoughts !">
+      <button type="submit" name="button">Submit</button>
+    </form>
+    </div>
+
+
+
+    <!-- <h1><%= title%></h1>
+    <p><%= url%></p>
+    <p><%= genres%></p>
+    <p><%= titleType%></p>
+    <p><%= year%></p>
+    <p><%= synopsis%></p>
+    <p><%= summary%></p>
+    <p><%= rating%></p> -->
+
+<%-include("footer.ejs")-%>

@@ -1,0 +1,13 @@
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+img{
+  width: 100%;
+  /* object-fit:fill; */
+}
+.nested{
+  display:grid;
+  grid-template-rows: auto;
+}
