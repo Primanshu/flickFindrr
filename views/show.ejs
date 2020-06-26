@@ -1,4 +1,6 @@
-<%- include("header.ejs") -%>
+<%-include("header.ejs")-%>
+
+
   <!-- <link rel="stylesheet" href="css/show.css"> -->
     <div class="container">
 
@@ -6,7 +8,24 @@
 
     <div class=" grid">
         <div class="poster">
-          <img src=" <%=url%>" alt="No image">
+          <img src=" <%=url%>" class = "img-poster" alt="No image">
+          <style media="screen">
+            .img-poster2{
+              width: 100%;
+              transition: 1s;
+              transform: scale(1.05);
+              /* object-fit:fill; */
+            }
+          </style>
+          <script type="text/javascript">
+            $('.img-poster').hover(function(){
+              $(this).addClass('img-poster2')
+            },function(){
+              $(this).removeClass('img-poster2')
+            });
+
+          </script>
+
         </div>
 
         <div class="nested">
@@ -61,32 +80,99 @@
     </form>
 
     <h2>Summary</h2>
-    <p><%= summary %></p>
+    <p><%= summary%>
+
+
+    </p>
+
 
     <h2>User Reviews</h2>
+    <% if(typeof(reviews) != 'undefined'){ %>
 
     <% for(var i=0;i<=1 && i< reviews.length ;i++){ %>
-      <h4><%=reviews[i].reviewTitle%></h4>
+      <h4 ><%=reviews[i].reviewTitle%></h4>
       <p>By <%= reviews[i].author.displayName %> on <%=reviews[i].submissionDate%></p>
-      <p><%= reviews[i].reviewText %></p>
+      <p><%=reviews[i].reviewText.substring(0,500)%><%if(reviews[i].reviewText.length > 500){%><a href = "#p<%=i%>" id="<%=i%>"><i>.....Read more</i></a><span style ="display : none;" id = "p<%=i%>"><%=reviews[i].reviewText.substring(500)%></span>
+        <%}%>
+      </p>
+
+      <script type="text/javascript">
+        $("#<%=i%>").click(function(){
+          console.log('asdafa');
+          $("#p<%=i%>").show();
+          $("#<%=i%>").hide();
+        })
+      </script>
+    <%}%>
+    <%}else{%>
+      <p>No reviews to show.</p>
     <%}%>
 
-    <h4>comments</h4>
-    <form class="" action="/comment" method="post">
-      <input type="text" name="" placeholder="Give us your thoughts !">
+
+
+    <h3>comments</h3>
+    <% var i = -1%>
+
+    <ul id= "comments-section">
+
+    <%comments.forEach(function(comment){%>
+      <%i++%>
+      <li class="comment-section">
+
+        <div >
+          <img class="display-pic" src="https://api.adorable.io/avatars/285/<%=comment.username%>.png" alt="" height="60" width="60">
+        </div>
+
+        <div class="">
+          <strong><%=comment.username%></strong> <i><%=comment.date%></i>
+          <p><%= comment.body.substring(0,250)%><%if(comment.body.length > 250){%><a href = "#c<%=i%>" id="c<%=i%>"><i>.....Read more</i></a><span style ="display : none;" id = "cid<%=i%>"><%=comment.body.substring(500)%></span>
+            <%}%>
+          </p>
+          <script type="text/javascript">
+            $("#c<%=i%>").click(function(){
+              console.log('asdafa');
+              $("#cid<%=i%>").show();
+              $("#c<%=i%>").hide();
+            })
+          </script>
+          <button type="button" id = "<%=comment._id%>" name="upvote">upvote</button>
+          <button type="button" id = "<%=comment._id%>" name="downvote">downvote</button>
+        </div>
+
+      </li>
+    <%});%>
+
+
+    </ul>
+    <script>
+        $(function () {
+        var socket = io();
+        $('.comment-send').submit(function(e) {
+          e.preventDefault(); // prevents page reloading
+          socket.emit('new comment',{titleId :"<%=titleId%>",body : $('#commentBody').val(),username :"<%=username%>",auth :"<%=auth%>"});
+          $('#commentBody').val('');
+        })
+
+        socket.on("comment added",function(newComment){
+          $("#comments-section").append($('<li class="comment-section">').html('<div ><img class="display-pic" src="https://api.adorable.io/avatars/285/newComment.username.png" alt="" height="60" width="60"></div><div class=""><strong>' + newComment.username + '</strong> <i>' + newComment.date + '</i><p>'+ newComment.body +'</p><button type="button" name="upvote">upvote</button><button type="button" name="downvote">downvote</button></div>'))
+        })
+        socket.on("comment failed",function(){
+          $("#comments-section").append('nooooooo');
+        })
+
+        // upvote and downvote
+        $('[name = "area"]').click(function(){
+
+        })
+      });
+
+    </script>
+    <form class="comment-send" action="" >
+
+      <input type="hidden" name="titleId" value= "<%=titleId%>">
+      <input id = "commentBody" type="text" name="body" placeholder="Join the Discussion">
       <button type="submit" name="button">Submit</button>
     </form>
     </div>
-
-
-
-    <!-- <h1><%= title%></h1>
-    <p><%= url%></p>
-    <p><%= genres%></p>
-    <p><%= titleType%></p>
-    <p><%= year%></p>
-    <p><%= synopsis%></p>
-    <p><%= summary%></p>
-    <p><%= rating%></p> -->
 
 <%-include("footer.ejs")-%>

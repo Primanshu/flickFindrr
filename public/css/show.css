@@ -3,11 +3,20 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
-img{
+.img-poster{
   width: 100%;
+  transition: 1s;
   /* object-fit:fill; */
 }
+
 .nested{
   display:grid;
   grid-template-rows: auto;
+}
+.display-pic{
+  border-radius: 50%;
+}
+.comment-section{
+  display: grid;
+  grid-template-columns: 80px 1fr;
 }

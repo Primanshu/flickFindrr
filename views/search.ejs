@@ -1,13 +1,29 @@
 <%- include("header.ejs") -%>
 
 <% for(var i=0; i<results.length; i++){ %>
-<%if('title' in results[i]){ %>
+<%if(('title' in results[i]) && ('image' in results[i])){ %>
 <%const movieTitle = results[i].title; %>
+<%const url = results[i].image.url; %>
 <%var movieId = results[i].id; %>
 <%movieId = movieId.slice(7,16); %>
-<a>
-  <h4><%= movieTitle %></h4>
-</a>
+<div class="container pd">
+
+  <a href="/show/<%=movieId%>">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-3 col-4">
+        <img src="<%=url%>" alt="Poster of <%=movieTitle%>">
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6 col-8">
+        <h4><%= movieTitle %></h4>
+        <h6>Year started: <%=results[i].year%></h6>
+        <h6>Running Time (in minutes): <%=results[i].runningTimeInMinutes%></h6>
+        <h6>Title type: <%=results[i].titleType%></h6>
+      </div>
+    </div>
+  </a>
+
+</div>
 <%}%>
 <%}%>
 

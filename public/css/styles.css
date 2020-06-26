@@ -1,4 +1,4 @@
-body{
+/* body{
   background-color: black !important;
   font-family: fantasy !important;
 }
@@ -10,4 +10,106 @@ h3{
 }
 h4{
   color: blue;
+} */
+.bg-custom{
+  /* background-color:  white; */
+  color: white;
+}
+.m{
+  width: 100%;
+}
+
+.image-description {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 4em;
+  color: white;
+  visibility: hidden;
+}
+
+.img-wrap:hover .image-description {
+  visibility: visible;
+  opacity: 1;
+}
+.img-wrap:hover img {
+  transition: 1.1s;
+  opacity: 0.35;
+}
+
+#heading{
+  position: absolute;
+  left: 50%;
+  /* margin-left: 50%; */
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 3vw;
+  overflow: hidden;
+  text-overflow:clip;
+  color: white;
+  visibility: hidden;
+}
+
+.head:hover #heading{
+  animation-duration: 3s;
+  animation-name: slidein;
+  width: 80%;
+  visibility: visible;
+  overflow: hidden;
+  text-overflow:clip;
+}
+.head{
+  transition: 2s;
+}
+.head:hover img{
+  transform: scale(0.95);
+  opacity: 0.4;
+  transition: 3s;
+}
+.head:hover{
+  background-color: black;
+  transition: 3s;
+}
+.head:not(:hover) #heading{
+  animation: 2s slideout;
+  transition: 2s;
+  width: 80%;
+  overflow: hidden;
+  text-overflow:clip;
+}img{
+  transition: 2s;
+}
+@keyframes slideout {
+ from {
+   position: absolute;
+   left: 50%;
+   /* margin-left: 50%; */
+   top: 50%;
+   transform: translate(-50%, -50%);
+ }
+ to {
+   left: 200%;
+   width: 80%;
+ }
+ visibility:hidden;
+}
+ @keyframes slidein {
+  from {
+    left: 100%;
+    width: 80%;
+  }
+
+  to {
+    position: absolute;
+    left: 50%;
+    /* margin-left: 50%; */
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.covering{
+  width: 100%;
 }
