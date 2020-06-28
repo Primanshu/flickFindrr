@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Chhichhore',
-  username : 'undefined',
-  auth : 'false',
+  username : 'rj_rachit',
+  auth : 'true',
   titleId: 'tt9052870',
   url: 'https://m.media-amazon.com/images/M/MV5BYjg2ZDI2YTYtN2EwYi00YWI5LTgyMWQtMWFkYmE3NmJkOGVhXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg',
   genres: [ 'Comedy', 'Drama' ],
@@ -418,9 +418,7 @@ module.exports = {
       username: 'himanshudhiman9313@gmail.com',
       date: 'Jun 22',
       body: 'SSR rip',
-      upvotes: 0,
-      downvotes: 0,
-      __v: 0
+      upvotes: 0
     },
     {
     _id : "5ef0979f3028c9365ccd3529",
@@ -428,8 +426,8 @@ module.exports = {
     username : "rj_rachit",
     date : "Jun 22",
     body : "bhot bura hua bhai ! bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !bhot bura hua bhai !",
-    upvotes : 0,
-    downvotes : 0
+    upvotes : {}
+
 }
   ]
 }

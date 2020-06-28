@@ -5,8 +5,10 @@ const schema = new mongoose.Schema({
   username : String,
   date : String,
   body : String,
-  upvotes : Number,
-  downvotes : Number
+  upvotes : {
+    sum : Number,
+    users : [String]
+  }
 })
 
 module.exports = new mongoose.model("Comment",schema);

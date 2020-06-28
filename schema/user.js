@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     title : String,
     rating : Number,
     url : String,
-    synopsis : String,
+    synopsis : String
   }]
 });
 userSchema.plugin(passportLocalMongoose);

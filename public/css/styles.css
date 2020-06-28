@@ -67,11 +67,11 @@ h4{
 .head:hover img{
   transform: scale(0.95);
   opacity: 0.4;
-  transition: 3s;
+  transition: 2s;
 }
 .head:hover{
   background-color: black;
-  transition: 3s;
+  transition: 2s;
 }
 .head:not(:hover) #heading{
   animation: 2s slideout;

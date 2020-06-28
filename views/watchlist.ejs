@@ -1,0 +1,33 @@
+<%-include("header")-%>
+
+<% for(var i=0; i<watchList.length; i++){ %>
+
+<%const movieTitle = watchList[i].title; %>
+<%const url = watchList[i].url; %>
+<%const movieId = watchList[i].titleId; %>
+<%const ratings = watchList[i].rating; %>
+<% let synopsis = watchList[i].synopsis; %>
+<div class="container pd">
+  <a href="/show/<%=movieId%>">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-3 col-6">
+        <img src="<%=url%>" alt="Poster of <%=movieTitle%>">
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+        <h5><%= movieTitle %></h5>
+        <p> <b>Rating:</b> <%=ratings%></p>
+        <p> <b>Synopsis: </b> <%=synopsis%> </p>
+      </div>
+    </div>
+  </a>
+  <form action="/remove" method="post">
+    <input type="text" name="id" value="<%=movieId%>" style="display:none;">
+    <button type="submit" name="submit" class="btn btn-primary">Remove from watch list!</button>
+  </form>
+
+</div>
+
+<% } %>
+
+<%-include("footer")-%>

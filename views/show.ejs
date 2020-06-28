@@ -75,8 +75,14 @@
       </p>
     <%}%>
 
+    <!-- watchlist button -->
     <form class="" action="/updateWatchlist" method="post">
-      <button type="submit" name="button">Add to watchlist +</button>
+      <input type="text" name="titleId" value="<%=titleId%>" style="display:none;">
+      <input type="text" name="title" value="<%=title%>" style="display:none;">
+      <input type="number" name="rating" value="<%=rating%>" style="display:none;">
+      <input type="text" name="url" value="<%=url%>" style="display:none;">
+      <input type="text" name="synopsis" value="<%=synopsis%>" style="display:none;">
+      <button type="submit" name="button" class="btn btn-primary"><b>+ </b>Add to watchlist</button>
     </form>
 
     <h2>Summary</h2>
@@ -135,16 +141,59 @@
               $("#c<%=i%>").hide();
             })
           </script>
-          <button type="button" id = "<%=comment._id%>" name="upvote">upvote</button>
-          <button type="button" id = "<%=comment._id%>" name="downvote">downvote</button>
+
+
+          <!-- this section checks if the user has already liked the post or not on front end, precaution is taken care of checking liked and notLiked at backend-->
+          <%if(comment.upvotes.users.find(function(x) {%> <!-- <finds if logged user exists in upvotes array or not -->
+            <% return x == username %>
+          <%}) != undefined){%>
+            <button type="submit" class="upvote" name="<%=comment._id%>" value="liked">downvote</button> <!--if user exist-->
+          <%}else{%>
+            <button type="submit" class="upvote" name="<%=comment._id%>" value="notLiked">upvote</button> <!--if user doesnt exist-->
+          <%}%>
+
         </div>
 
       </li>
     <%});%>
 
-
     </ul>
+
+    <script type="text/javascript">
+      //script for upvotes
+      $(function(){
+        var socket = io();
+        $('.upvote').click(function(e){
+          e.preventDefault();
+          var commentId = $(this).attr('name');
+          console.log(commentId);
+          if("<%=auth%>" == "false"){ //checking if user is logged in or not
+            $(this).text("login first");
+          }else{
+            if($(this).val()=="liked"){ //checking if the post is already liked by the current user
+              $(this).text("already liked");
+              socket.emit("downvote",{commentId : commentId,username : "<%=username%>"});//if liked then downvote it
+            }else{
+              socket.emit("upvote",{commentId : commentId,username : "<%=username%>"});//if not liked then upvote it
+            }
+          }
+        });
+
+        socket.on("upvote",function(comment){
+          $('[name = '+comment.commentId+']').val('liked').text('downvote'); //changing notliked value(upvote) to liked value(downvote)
+        })
+
+        socket.on("downvote",function(comment){
+          $('[name = '+comment.commentId+']').val('notliked').text('upvote');//vice versa
+        })
+
+      });
+    </script>
+
+
     <script>
+
+        //Script For new Comments
         $(function () {
         var socket = io();
         $('.comment-send').submit(function(e) {
@@ -153,20 +202,17 @@
           $('#commentBody').val('');
         })
 
-        socket.on("comment added",function(newComment){
-          $("#comments-section").append($('<li class="comment-section">').html('<div ><img class="display-pic" src="https://api.adorable.io/avatars/285/newComment.username.png" alt="" height="60" width="60"></div><div class=""><strong>' + newComment.username + '</strong> <i>' + newComment.date + '</i><p>'+ newComment.body +'</p><button type="button" name="upvote">upvote</button><button type="button" name="downvote">downvote</button></div>'))
+        socket.on("comment added",function(newComment){ //after the comment is added we need to render it also
+          $("#comments-section").append($('<li class="comment-section">').html('<div ><img class="display-pic" src="https://api.adorable.io/avatars/285/newComment.username.png" alt="" height="60" width="60"></div><div class=""><strong>' + newComment.username + '</strong> <i>' + newComment.date + '</i><p>'+ newComment.body +'</p><button type="submit" class="upvote" name='+newComment._id+' value="liked">upvote</button>'))
         })
-        socket.on("comment failed",function(){
+        socket.on("comment failed",function(){//in case the comment is not updated or the user is not loggeg in or authorised
           $("#comments-section").append('nooooooo');
-        })
-
-        // upvote and downvote
-        $('[name = "area"]').click(function(){
-
         })
       });
 
     </script>
+
+
     <form class="comment-send" action="" >
 
       <input type="hidden" name="titleId" value= "<%=titleId%>">
