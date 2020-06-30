@@ -4,10 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <title>IMDB</title>
+  <title>flickFindrr</title>
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/frontend.css">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/show.css">
-  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
@@ -20,46 +22,57 @@
   .m {
     padding: 15px;
   }
+  .navbar-brand:hover{
+    -webkit-transform: scale(1.0);
+    text-decoration: none !important;
+  }
 </style>
 
-<body style="background:black;color:white;">
+<body style="background:black;color:#ffcd3c;">
+
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg  bg-custom">
-    <a class="navbar-brand" href="#" style="padding-right: 20%">IMDB</a>
+    <a class="navbar-brand " href="/"> <b>flickFindrr</b> </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-      <form class="form-inline my-2 my-lg-0" style="padding-right:25%" action="search" method="post">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search for a movie/show" aria-label="Search" name="movieName">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
 
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-auto" style="width:100%;">
         <li class="nav-item active">
-          <a class="nav-link" href="/" style="padding-right: 15px;">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/" style="">Home <span class="sr-only">(current)</span></a>
         </li>
 
+        <%if(!auth){%>
         <li class="nav-item active">
           <a class="nav-link" href="/signin">Sign In</a>
         </li>
+        <%}%>
+
 
         <li class="nav-item active">
           <a class="nav-link" href="/seewatchlist">Watchlist</a>
         </li>
-
+        <%if(auth){%>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Profile
+            My Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="/profile">Go to profile</a>
+
+
+            <a class="dropdown-item" href="/profile"> <%=username%> <img class="display-pic" src="https://api.adorable.io/avatars/285/<%=username%>.png" style="position:absolute;right:10%" alt="" height="25" width="25"></a>
             <a class="dropdown-item" href="/logout">Logout</a>
           </div>
         </li>
-      </ul>
+        <%}%>
 
+      </ul>
+      <form class="my-2 my-lg-0" style="display:flex;width:100%;" action="search" method="post">
+        <input class="form-control mr-sm-2" style=""type="search" placeholder="Search for a movie/show" aria-label="Search" name="movieName">
+        <button class="btn btn-outline-warning mr-sm-2" type="submit">Search</button>
+      </form>
     </div>
   </nav>

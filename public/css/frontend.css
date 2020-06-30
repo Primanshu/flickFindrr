@@ -1,0 +1,21 @@
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Work Sans', sans-serif;
+}
+
+button:hover{
+  opacity: 0.9;
+}
+
+input:focus {
+  border-color: #ffcd3c;
+  border-width: 3px;
+}
+
+a{
+  color: #ffcd3c !important;
+}
+
+a:hover{
+  text-decoration: underline !important;
+  -webkit-transform: scale(1.2);
+}

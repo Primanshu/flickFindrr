@@ -1,5 +1,48 @@
 <%- include("header.ejs") -%>
-<h3>User name: <%=userName%></h3>
+<style media="screen">
+  input {
+    margin-top: 15px;
+    display: block;
+    width: 45%;
+    border-radius: 5px;
+    border-width: 0px;
+  }
 
-<a href="/seewatchlist" class="btn btn-primary">See Your Watchlist!</a>
+  section {
+    margin-left: 2.4%;
+  }
+
+  section button {
+    margin-top: 1%;
+  }
+
+  section img{
+    border-radius: 100%;
+  }
+.black{
+  color: black !important;
+}
+</style>
+
+<section>
+  <h3>profile image</h3>
+  <img src="https://api.adorable.io/avatars/285/<%=user.username%>.png" alt="" width="100px" height="100px">
+  <h3>Username: <%=user.username%></h3>
+  <hr>
+  <a href="/seewatchlist" class="btn black btn-warning">See Your Watchlist!</a>
+  <hr>
+  <h3>Change First and Last name: </h3>
+  <form class="" action="/changeSettings" method="post">
+    <input type="text" name="firstName" value="<%=user.firstName%>" placeholder="new first name..">
+    <input type="text" name="lastName" value="<%=user.lastName%>" placeholder="new last name..">
+    <button type="submit" class="btn btn-warning" name="button">Change!</button>
+  </form>
+  <hr>
+  <h3>Change Password: </h3>
+  <form class="" action="/changePassword" method="post">
+    <input type="password" name="newPass" placeholder="new password">
+    <input type="password" name="confirmed" placeholder="confirm new password">
+    <button type="submit" class="btn btn-warning" name="button">Confirm! </button>
+  </form>
+</section>
 <%- include("footer.ejs") -%>

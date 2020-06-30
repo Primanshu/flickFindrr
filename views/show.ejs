@@ -1,156 +1,184 @@
 <%-include("header.ejs")-%>
 
+<style media="screen">
+  textarea {
+    width: 45%;
+    display: block;
+    resize: none;
+  }
+  img{
+    margin-right: 5px;
+  }
+</style>
 
-  <!-- <link rel="stylesheet" href="css/show.css"> -->
-    <div class="container">
+<!-- <link rel="stylesheet" href="css/show.css"> -->
+<div class="container">
 
-    <h1><%= title%></h1>
+  <h1><%= title%></h1>
 
-    <div class=" grid">
-        <div class="poster">
-          <img src=" <%=url%>" class = "img-poster" alt="No image">
-          <style media="screen">
-            .img-poster2{
-              width: 100%;
-              transition: 1s;
-              transform: scale(1.05);
-              /* object-fit:fill; */
-            }
-          </style>
-          <script type="text/javascript">
-            $('.img-poster').hover(function(){
-              $(this).addClass('img-poster2')
-            },function(){
-              $(this).removeClass('img-poster2')
-            });
+  <div class=" grid">
+    <div class="poster">
+      <img src=" <%=url%>" class="img-poster" alt="No image">
+      <style media="screen">
+        .img-poster2 {
+          width: 100%;
+          transition: 1s;
+          transform: scale(1.05);
+          /* object-fit:fill; */
+        }
+      </style>
+      <script type="text/javascript">
+        $('.img-poster').hover(function() {
+          $(this).addClass('img-poster2')
+        }, function() {
+          $(this).removeClass('img-poster2')
+        });
+      </script>
 
-          </script>
-
-        </div>
-
-        <div class="nested">
-          <div class="nested-item">
-            <%= rating%>
-          </div>
-          <div class="nested-item">
-            <%= genres%>
-          </div>
-          <div class="nested-item">
-            <%= titleType%>(<%= year%>)
-          </div>
-        </div>
     </div>
-    <p><%= synopsis%></p>
-    <%if(titleType == 'movie'){%>
-      <% var first = true%>
-      <p>Director :
-        <%directors.forEach(function(director){%>
-          <%if(!first){%>
-            ,
-          <%}%>
-          <%=director.name%>
-          <% var first = false%>
-        <%});%>
-      </p>
-      <% first = true%>
-      <p>Writers :
-        <%writers.forEach(function(writer){%>
-          <%if(!first){%>
-            ,
-          <%}%>
-          <%=writer.name%>
-          <% first = false%>
-        <%});%>
-      </p>
-    <%}else if(titleType == 'tvSeries'){%>
-      <% var first = true%>
-      <p>Creators :
-        <%writers.forEach(function(writer){%>
-          <%if(!first){%>
-            ,
-          <%}%>
-          <%=writer.name%>
-          <% first = false%>
-        <%});%>
-      </p>
+
+    <div class="nested">
+      <div class="nested-item">
+        <%= rating%>
+      </div>
+      <div class="nested-item">
+        <%= genres%>
+      </div>
+      <div class="nested-item">
+        <%= titleType%>(<%= year%>)
+      </div>
+    </div>
+  </div>
+  <p><%= synopsis%></p>
+
+  <%if(titleType == 'tvSeries'){%>
+
+  <% var first = true%>
+  <p>Creators :
+    <%writers.forEach(function(writer){%>
+    <%if(!first){%>
+    ,
     <%}%>
+          <%=writer.name%>
+    <% first = false%>
+    <%});%>
+  </p>
+
+
+
+
+
+  <%}else{%>
+
+
+  <% var first = true%>
+  <p>Director :
+    <%directors.forEach(function(director){%>
+    <%if(!first){%>
+    ,
+    <%}%>
+        <%=director.name%>
+    <% var first = false%>
+    <%});%>
+  </p>
+  <% first = true%>
+  <p>Writers :
+    <%writers.forEach(function(writer){%>
+    <%if(!first){%>
+    ,
+    <%}%>
+        <%=writer.name%>
+    <% first = false%>
+    <%});%>
+  </p>
+
+  <%}%>
 
     <!-- watchlist button -->
     <form class="" action="/updateWatchlist" method="post">
       <input type="text" name="titleId" value="<%=titleId%>" style="display:none;">
-      <input type="text" name="title" value="<%=title%>" style="display:none;">
-      <input type="number" name="rating" value="<%=rating%>" style="display:none;">
-      <input type="text" name="url" value="<%=url%>" style="display:none;">
-      <input type="text" name="synopsis" value="<%=synopsis%>" style="display:none;">
-      <button type="submit" name="button" class="btn btn-primary"><b>+ </b>Add to watchlist</button>
-    </form>
+  <input type="text" name="title" value="<%=title%>" style="display:none;">
+  <input type="number" name="rating" value="<%=rating%>" style="display:none;">
+  <input type="text" name="url" value="<%=url%>" style="display:none;">
+  <input type="text" name="synopsis" value="<%=synopsis%>" style="display:none;">
+  <button type="submit" name="button" class="btn btn-warning"><b>+ </b>Add to watchlist</button>
+  </form>
 
-    <h2>Summary</h2>
-    <p><%= summary%>
-
-
-    </p>
+  <h2>Summary</h2>
+  <p><%= summary%>
 
 
-    <h2>User Reviews</h2>
-    <% if(typeof(reviews) != 'undefined'){ %>
+  </p>
 
-    <% for(var i=0;i<=1 && i< reviews.length ;i++){ %>
-      <h4 ><%=reviews[i].reviewTitle%></h4>
-      <p>By <%= reviews[i].author.displayName %> on <%=reviews[i].submissionDate%></p>
-      <p><%=reviews[i].reviewText.substring(0,500)%><%if(reviews[i].reviewText.length > 500){%><a href = "#p<%=i%>" id="<%=i%>"><i>.....Read more</i></a><span style ="display : none;" id = "p<%=i%>"><%=reviews[i].reviewText.substring(500)%></span>
-        <%}%>
+
+  <h2>User Reviews</h2>
+  <% if(typeof(reviews) != 'undefined'){ %>
+
+  <% for(var i=0;i<=1 && i< reviews.length ;i++){ %>
+  <h4><%=reviews[i].reviewTitle%></h4>
+  <p>By <%= reviews[i].author.displayName %> on <%=reviews[i].submissionDate%></p>
+  <p><%=reviews[i].reviewText.substring(0,500)%><%if(reviews[i].reviewText.length > 500){%><a href="#p<%=i%>" id="<%=i%>"><i>.....Read more</i></a><span style="display : none;" id="p<%=i%>"><%=reviews[i].reviewText.substring(500)%></span>
+    <%}%>
       </p>
 
       <script type="text/javascript">
         $("#<%=i%>").click(function(){
-          console.log('asdafa');
-          $("#p<%=i%>").show();
-          $("#<%=i%>").hide();
-        })
-      </script>
+    console.log('asdafa');
+    $("#p<%=i%>").show();
+    $("#<%=i%>").hide();
+    })
+    </script>
     <%}%>
     <%}else{%>
-      <p>No reviews to show.</p>
+    <p>No reviews to show.</p>
     <%}%>
 
 
 
-    <h3>comments</h3>
+    <h3>Comments: </h3>
     <% var i = -1%>
 
-    <ul id= "comments-section">
+    <ul id="comments-section">
 
-    <%comments.forEach(function(comment){%>
+      <%comments.forEach(function(comment){%>
       <%i++%>
       <li class="comment-section">
 
-        <div >
+        <div>
           <img class="display-pic" src="https://api.adorable.io/avatars/285/<%=comment.username%>.png" alt="" height="60" width="60">
         </div>
 
         <div class="">
           <strong><%=comment.username%></strong> <i><%=comment.date%></i>
-          <p><%= comment.body.substring(0,250)%><%if(comment.body.length > 250){%><a href = "#c<%=i%>" id="c<%=i%>"><i>.....Read more</i></a><span style ="display : none;" id = "cid<%=i%>"><%=comment.body.substring(500)%></span>
+          <p><%= comment.body.substring(0,250)%><%if(comment.body.length > 250){%><a href="#c<%=i%>" id="c<%=i%>"><i>.....Read more</i></a><span style="display : none;" id="cid<%=i%>"><%=comment.body.substring(500)%></span>
             <%}%>
           </p>
           <script type="text/javascript">
             $("#c<%=i%>").click(function(){
-              console.log('asdafa');
-              $("#cid<%=i%>").show();
-              $("#c<%=i%>").hide();
+            console.log('asdafa');
+            $("#cid<%=i%>").show();
+            $("#c<%=i%>").hide();
             })
-          </script>
+            </script>
 
 
-          <!-- this section checks if the user has already liked the post or not on front end, precaution is taken care of checking liked and notLiked at backend-->
-          <%if(comment.upvotes.users.find(function(x) {%> <!-- <finds if logged user exists in upvotes array or not -->
+            <!-- this section checks if the user has already liked the post or not on front end, precaution is taken care of checking liked and notLiked at backend-->
+            <%if(comment.upvotes.users.find(function(x) {%>
+            <!-- <finds if logged user exists in upvotes array or not -->
             <% return x == username %>
-          <%}) != undefined){%>
-            <button type="submit" class="upvote" name="<%=comment._id%>" value="liked">downvote</button> <!--if user exist-->
-          <%}else{%>
-            <button type="submit" class="upvote" name="<%=comment._id%>" value="notLiked">upvote</button> <!--if user doesnt exist-->
-          <%}%>
+            <%}) != undefined){%>
+            <button type="submit" class="upvote" name="<%=comment._id%>" value="liked">downvote</button>
+            <!--if user exist-->
+            <%}else{%>
+            <button type="submit" class="upvote" name="<%=comment._id%>" value="notLiked">upvote</button>
+            <!--if user doesnt exist-->
+            <%}%>
+
+          <%if(comment.username == username){%>
+            <form class="delete" action="/deleteComment" method="post">
+              <button type="submit" name="delete" value="<%=comment._id%>">delete</button>
+            </form>
+            <%}%>
 
         </div>
 
@@ -161,30 +189,36 @@
 
     <script type="text/javascript">
       //script for upvotes
-      $(function(){
+      $(function() {
         var socket = io();
-        $('.upvote').click(function(e){
+        $('.upvote').click(function(e) {
           e.preventDefault();
           var commentId = $(this).attr('name');
           console.log(commentId);
-          if("<%=auth%>" == "false"){ //checking if user is logged in or not
+          if ("<%=auth%>" == "false") { //checking if user is logged in or not
             $(this).text("login first");
-          }else{
-            if($(this).val()=="liked"){ //checking if the post is already liked by the current user
+          } else {
+            if ($(this).val() == "liked") { //checking if the post is already liked by the current user
               $(this).text("already liked");
-              socket.emit("downvote",{commentId : commentId,username : "<%=username%>"});//if liked then downvote it
-            }else{
-              socket.emit("upvote",{commentId : commentId,username : "<%=username%>"});//if not liked then upvote it
+              socket.emit("downvote", {
+                commentId: commentId,
+                username: "<%=username%>"
+              }); //if liked then downvote it
+            } else {
+              socket.emit("upvote", {
+                commentId: commentId,
+                username: "<%=username%>"
+              }); //if not liked then upvote it
             }
           }
         });
 
-        socket.on("upvote",function(comment){
-          $('[name = '+comment.commentId+']').val('liked').text('downvote'); //changing notliked value(upvote) to liked value(downvote)
+        socket.on("upvote", function(comment) {
+          $('[name = ' + comment.commentId + ']').val('liked').text('downvote'); //changing notliked value(upvote) to liked value(downvote)
         })
 
-        socket.on("downvote",function(comment){
-          $('[name = '+comment.commentId+']').val('notliked').text('upvote');//vice versa
+        socket.on("downvote", function(comment) {
+          $('[name = ' + comment.commentId + ']').val('notliked').text('upvote'); //vice versa
         })
 
       });
@@ -192,33 +226,51 @@
 
 
     <script>
-
-        //Script For new Comments
-        $(function () {
+      //Script For new Comments
+      $(function() {
         var socket = io();
         $('.comment-send').submit(function(e) {
           e.preventDefault(); // prevents page reloading
-          socket.emit('new comment',{titleId :"<%=titleId%>",body : $('#commentBody').val(),username :"<%=username%>",auth :"<%=auth%>"});
+          socket.emit('new comment', {
+            titleId: "<%=titleId%>",
+            body: $('#commentBody').val(),
+            username: "<%=username%>",
+            auth: "<%=auth%>"
+          });
           $('#commentBody').val('');
         })
 
-        socket.on("comment added",function(newComment){ //after the comment is added we need to render it also
-          $("#comments-section").append($('<li class="comment-section">').html('<div ><img class="display-pic" src="https://api.adorable.io/avatars/285/newComment.username.png" alt="" height="60" width="60"></div><div class=""><strong>' + newComment.username + '</strong> <i>' + newComment.date + '</i><p>'+ newComment.body +'</p><button type="submit" class="upvote" name='+newComment._id+' value="liked">upvote</button>'))
+        socket.on("comment added", function(newComment) { //after the comment is added we need to render it also
+          $("#comments-section").append($('<li class="comment-section">').html('<div ><img class="display-pic" src="https://api.adorable.io/avatars/285/newComment.username.png" alt="" height="60" width="60"></div><div class=""><strong>' +
+            newComment.username + '</strong> <i>' + newComment.date + '</i><p>' + newComment.body + '</p><button type="submit" class="upvote" name=' + newComment._id +
+            ' value="notLiked">upvote</button><form class="delete" action="/deleteComment" method="post"><button type="submit" name="delete" value=' + newComment._id + '>delete</button></form>'))
         })
-        socket.on("comment failed",function(){//in case the comment is not updated or the user is not loggeg in or authorised
+        socket.on("comment failed", function() { //in case the comment is not updated or the user is not loggeg in or authorised
           $("#comments-section").append('nooooooo');
         })
       });
-
     </script>
 
 
-    <form class="comment-send" action="" >
+    <form class="comment-send" action="">
 
-      <input type="hidden" name="titleId" value= "<%=titleId%>">
-      <input id = "commentBody" type="text" name="body" placeholder="Join the Discussion">
-      <button type="submit" name="button">Submit</button>
+      <input type="hidden" name="titleId" value="<%=titleId%>">
+      <textarea id="commentBody" type="text" name="body" placeholder="Join The Discussion" maxlength="750" rows="5"></textarea>
+      <button type="submit" class="btn btn-warning" name="button" style="margin-top: 5px">Submit</button>
     </form>
-    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#commentBody").val('');
+        $("#commentBody").keypress(function() {
+          var textLength = $("#commentBody").val().length;
+          if (textLength % 50 == 0) {
+            var height = textLength / 50;
+            $("#commentBody").css('height', 20 + (height * 20));
+          }
+        });
+      });
+    </script>
+</div>
 
 <%-include("footer.ejs")-%>
