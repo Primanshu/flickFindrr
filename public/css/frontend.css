@@ -1,8 +1,17 @@
-h1,h2,h3,h4,h5,h6{
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Work Sans', sans-serif;
 }
 
-button:hover{
+body {
+  background: black !important;
+  color: #ffcd3c !important;
+}
+
+nav {
+  position: fixed;
+}
+
+button:hover {
   opacity: 0.9;
 }
 
@@ -11,11 +20,10 @@ input:focus {
   border-width: 3px;
 }
 
-a{
+a {
   color: #ffcd3c !important;
 }
 
-a:hover{
+a:hover {
   text-decoration: underline !important;
-  -webkit-transform: scale(1.2);
 }

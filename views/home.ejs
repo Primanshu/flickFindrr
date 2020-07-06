@@ -1,12 +1,9 @@
-<%-include("header.ejs")-%>
-<!-- carousel -->
-
+View Details<%-include("header.ejs")-%>
 
 <script type="text/javascript">
-  $.getJSON("https://raw.githubusercontent.com/RJrachit/IMDB-data/master/movie_of_the_week.json",function(json)
-  {
+  $.getJSON("https://raw.githubusercontent.com/RJrachit/IMDB-data/master/movie_of_the_week.json", function(json) {
     console.log(json);
-    $(".head").html("<a href=show/"+json.id+"><img class='covering' src="+json.title.image.cover+" height='' width=''></a><p id='heading' >"+'"'+json.heading+'"'+"</p>");
+    $(".head").html("<a href=show/" + json.id + "><img class='covering' src=" + json.title.image.cover + " height='' width=''></a><p id='heading' >" + '"' + json.heading + '"' + "</p>");
     // $(".poster").html("<img class = 'img-poster' src="+json.title.image.url+">");
     // $(".weeknested").html("")
     // $("#heading").text('"'+json.heading+'"');
@@ -18,12 +15,8 @@
 
 <div class="row pd">
   <div class="col-lg-12 head">
-
   </div>
 </div>
-
-
-
 
 
 <!-- bootstrap grid featured movies-->
@@ -35,7 +28,7 @@
       <a href="show/tt3207684">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_QL50_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
 
     </div>
 
@@ -43,21 +36,21 @@
       <a href="show/tt0758758">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BMTAwNDEyODU1MjheQTJeQWpwZ15BbWU2MDc3NDQwNw@@._V1_QL50_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt1375666">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_QL50_SY1000_CR0,0,675,1000_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt0816692">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_QL50_SY1000_SX675_AL_.jpg" alt="" height="" width="250">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
   </div>
@@ -68,28 +61,28 @@
       <a href="show/tt1130884">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BYzhiNDkyNzktNTZmYS00ZTBkLTk2MDAtM2U0YjU1MzgxZjgzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_QL50_SY1000_CR0,0,675,1000_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt10314450">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BNDcxY2IxMmUtZDhlNy00NWM1LWI2MTgtOGRkMTEyZjc5MDMxXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_QL50_SY1000_SX675_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt0375174">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BMTQ5NjQ0NDI3NF5BMl5BanBnXkFtZTcwNDI0MjEzMw@@._V1_QL50_SY1000_CR0,0,672,1000_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt5563334">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BN2VhNTY5ZTUtYzc1NC00NjUyLWI1NDQtYWE3YmJlNjQ3OGVlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_QL50_SY1000_CR0,0,674,1000_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
   </div>
@@ -104,28 +97,28 @@
       <a href="show/tt8108198">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BZWZhMjhhZmYtOTIzOC00MGYzLWI1OGYtM2ZkN2IxNTI4ZWI3XkEyXkFqcGdeQXVyNDAzNDk0MTQ@._V1_QL50_SX692_CR0,0,692,999_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt8907986">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BNjlkZjBjZmUtNjZjNS00ODlkLWIzODYtODY0NmViN2E0MjIxXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_QL50_SY1000_CR0,0,692,1000_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt9052870">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BYjg2ZDI2YTYtN2EwYi00YWI5LTgyMWQtMWFkYmE3NmJkOGVhXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_QL50_SY1000_CR0,0,692,1000_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt7399470">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BNTkyMDc0MjAtNmQ4Yi00MDBmLWI5NTItYjljOGMxOTkzMzk1XkEyXkFqcGdeQXVyNTA4OTgxMzk@._V1_QL50_SY1000_CR0,0,690,1000_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
   </div>
 
@@ -135,48 +128,47 @@
       <a href="show/tt2213054">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BMTgwNTAwMjEzMF5BMl5BanBnXkFtZTcwNzMzODY4OA@@._V1_QL50_SY1000_CR0,0,753,1000_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt1187043">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BNTkyOGVjMGEtNmQzZi00NzFlLTlhOWQtODYyMDc2ZGJmYzFhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_QL50_SY1000_CR0,0,694,1000_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt4169250">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BZjAzZjZiMmQtMDZmOC00NjVmLTkyNTItOGI2Mzg4NTBhZTA1XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_QL50_SY1000_SX692_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
       <a href="show/tt6971752">
         <img class="m" src="https://m.media-amazon.com/images/M/MV5BZGRhMDUxMjktYzdiZi00NTczLWIxMzQtMjEyZTU5MTYwNTg2XkEyXkFqcGdeQXVyNjY1MTg4Mzc@._V1_QL50_SY1000_CR0,0,692,1000_AL_.jpg" alt="" height="" width="">
       </a>
-      <p class = "image-description">9.4<a class = "btn btn-success" href= "show/tt3207684" role="button">view details</a></p>
+      <p class="image-description">9.4<a class="btn btn-success" href="show/tt3207684" role="button">View Details</a></p>
     </div>
 
   </div>
 </div>
 
-
+<!-- Carousel -->
 <div class="">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <h1 align="center">All Time Hits</h1>
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <h1 align="center">All Time Hits</h1>
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-  </ol>
-
-  <div class="carousel-inner">
-    <div class="carousel-item active ">
+    <div class="carousel-inner">
+      <div class="carousel-item active ">
 
 
         <a href="show/tt0903747">
@@ -185,44 +177,44 @@
 
 
 
-    </div>
+      </div>
 
-    <div class="carousel-item">
-      <a href="show/tt3007572">
-        <img class="d-block w-100" src="https://jeonline.com.br/site/uploads/posts/locke-key-e-uma-das-decepcoes-da-netflix-de-2020-je-online-6d42038de524d8b22e0275da380c6570.jpg" alt="Second slide" height="50%" width="50%">
+      <div class="carousel-item">
+        <a href="show/tt3007572">
+          <img class="d-block w-100" src="https://jeonline.com.br/site/uploads/posts/locke-key-e-uma-das-decepcoes-da-netflix-de-2020-je-online-6d42038de524d8b22e0275da380c6570.jpg" alt="Second slide" height="50%" width="50%">
+        </a>
+      </div>
+
+      <div class="carousel-item">
+        <a href="show/tt5232792">
+          <img class="d-block w-100" src="https://cdn.mos.cms.futurecdn.net/7jAF7F26C7knMDj6z3EMkG.jpg" alt="Third slide" height="50%" width="50%">
+        </a>
+      </div>
+
+      <div class="carousel-item">
+        <a href="show/tt4574334/">
+          <img class="d-block w-100" src="https://images7.alphacoders.com/726/thumb-1920-726772.jpg" alt="Fourth slide" height="50%" width="50%">
+        </a>
+      </div>
+
+      <div class="carousel-item">
+        <a href="show/tt7335184">
+          <img class="d-block w-100" src="https://www.thedailynic.com/wp-content/uploads/2019/07/My-Top-10-Netflix-Shows-to-Watch-You.png" alt="Second slide" height="50%" width="50%">
+        </a>
+      </div>
+
+      <!-- previous button -->
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <!-- next button-->
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
       </a>
     </div>
-
-    <div class="carousel-item">
-      <a href="show/tt5232792">
-        <img class="d-block w-100" src="https://cdn.mos.cms.futurecdn.net/7jAF7F26C7knMDj6z3EMkG.jpg" alt="Third slide" height="50%" width="50%">
-      </a>
-    </div>
-
-    <div class="carousel-item">
-      <a href="show/tt4574334/">
-        <img class="d-block w-100" src="https://images7.alphacoders.com/726/thumb-1920-726772.jpg" alt="Fourth slide" height="50%" width="50%">
-      </a>
-    </div>
-
-    <div class="carousel-item">
-      <a href="show/tt7335184">
-        <img class="d-block w-100" src="https://www.thedailynic.com/wp-content/uploads/2019/07/My-Top-10-Netflix-Shows-to-Watch-You.png" alt="Second slide" height="50%" width="50%">
-      </a>
-    </div>
-
-    <!-- previous -->
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <!-- next -->
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
   </div>
-</div>
 </div>
 
 <%-include("footer.ejs")-%>

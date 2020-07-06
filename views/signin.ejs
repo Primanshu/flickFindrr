@@ -179,8 +179,6 @@ background-repeat: no-repeat; */
             My Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-
             <a class="dropdown-item" href="/profile"> <%=username%> <img class="display-pic" src="https://api.adorable.io/avatars/285/<%=username%>.png" style="position:absolute;right:10%" alt="" height="25" width="25"></a>
             <a class="dropdown-item" href="/logout">Logout</a>
           </div>
@@ -190,7 +188,7 @@ background-repeat: no-repeat; */
       </ul>
       <form class="my-2 my-lg-0" style="display:flex;width:100%;" action="search" method="post">
         <input class="form-control mr-sm-2" style=""type="search" placeholder="Search for a movie/show" aria-label="Search" name="movieName">
-        <button class="btn btn-outline-warning mr-sm-2" type="submit">Search</button>
+        <button class="btn btn-warning mr-sm-2" type="submit"> <img src="images/search.png" height="15px" width="15px" </button>
       </form>
     </div>
   </nav>
