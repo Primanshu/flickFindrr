@@ -22,8 +22,5 @@ input:focus {
 
 a {
   color: #ffcd3c !important;
-}
-
-a:hover {
-  text-decoration: underline !important;
+  font-size: 1em;
 }

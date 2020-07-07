@@ -1,6 +1,6 @@
 <%-include("header")-%>
 <style media="screen">
-  img{
+  img.m {
     min-width: 109px;
     min-height: 109px;
   }
@@ -14,19 +14,22 @@
 <% let synopsis = watchList[i].synopsis; %>
 <div class="container pd">
 
-  <a href="/show/<%=movieId%>">
-    <div class="row">
-      <div class="col-lg-2 col-md-2 col-sm-3 col-4">
-        <img src="<%=url%>" class="m"  alt="Poster of <%=movieTitle%>">
-      </div>
-
-      <div class="col-lg-6 col-md-6 col-sm-6 col-8">
-        <b><h5><%= movieTitle %></h5></b>
-        <p> <b>Rating:</b> <%=ratings%></p>
-        <p> <b>Synopsis: </b> <%=synopsis%> </p>
-      </div>
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-3 col-4">
+      <a href="/show/<%=movieId%>">
+        <img src="<%=url%>" class="m" alt="Poster of <%=movieTitle%>">
     </div>
-  </a>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-8">
+      <b>
+        <h5><%= movieTitle %></h5>
+      </b>
+      </a >
+      <p> <b>Rating:</b> <%=ratings%></p>
+      <p> <b>Synopsis: </b> <%=synopsis%> </p>
+    </div>
+  </div>
+
   <form action="/remove" method="post">
     <input type="text" name="id" value="<%=movieId%>" style="display:none;">
     <button type="submit" name="submit" class="btn btn-warning">Remove from watch list!</button>

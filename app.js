@@ -42,6 +42,7 @@ const request = require("request");
 const obj = require(__dirname + '/obj');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+var jsalert = require('js-alert');
 //console.log(obj);
 app.set('view engine', 'ejs');
 
@@ -204,9 +205,7 @@ app.get('/logout', function(req, res) {
 var movieName = "";
 app.get('/search', function(req, res) {
   if (movieName.length === 0) {
-    res.write("<h1>Looks like you haven't searched for anything.</h1>");
-    res.write("<p>Go back to search for a movie/show</p>");
-    res.send();
+    res.render("emptysearch",{auth: req.authCustom.auth});
   } else {
     var findTitle = {
       method: 'GET',
@@ -268,7 +267,7 @@ app.get("/seewatchlist", function(req, res) {
       });
     }
   } else {
-    res.send("<h1>Please login to see your watch list!</h1>");
+    res.redirect("/signin");
   }
 });
 

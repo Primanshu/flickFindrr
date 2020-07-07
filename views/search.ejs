@@ -1,5 +1,10 @@
 <%- include("header.ejs") -%>
-
+<style media="screen">
+  img.m {
+    min-width: 109px;
+    min-height: 109px;
+  }
+</style>
 <% for(var i=0; i<results.length; i++){ %>
 <%if(('title' in results[i]) && ('image' in results[i])){ %>
 <%const movieTitle = results[i].title; %>
@@ -8,20 +13,20 @@
 <%movieId = movieId.slice(7,16); %>
 <div class="container pd">
 
-  <a href="/show/<%=movieId%>">
-    <div class="row">
-      <div class="col-lg-2 col-md-2 col-sm-3 col-4">
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-3 col-4">
+      <a href="/show/<%=movieId%>">
         <img src="<%=url%>" class="m" alt="Poster of <%=movieTitle%>">
-      </div>
-
-      <div class="col-lg-6 col-md-6 col-sm-6 col-8">
-        <h4><%= movieTitle %></h4>
-        <h6>Year started: <%=results[i].year%></h6>
-        <h6>Running Time (in minutes): <%=results[i].runningTimeInMinutes%></h6>
-        <h6>Title type: <%=results[i].titleType%></h6>
-      </div>
     </div>
-  </a>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-8">
+      <h4><%= movieTitle %></h4>
+      </a>
+      <h6>Year started: <%=results[i].year%></h6>
+      <h6>Running Time (in minutes): <%=results[i].runningTimeInMinutes%></h6>
+      <h6>Title type: <%=results[i].titleType%></h6>
+    </div>
+  </div>
 </div>
 
 <%}%>

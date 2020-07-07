@@ -140,18 +140,43 @@ background-repeat: no-repeat; */
       color: #ffcd3c !important;
     }
 
-    a:hover {
-      text-decoration: underline !important;
-      -webkit-transform: scale(1.2);
+    #custom-nav {
+      position: fixed;
+      z-index: 10;
+      background-color: black;
+      width: 100%;
+      top: 0;
     }
+
+    #custom-nav a:hover {
+      text-decoration: none !important;
+      transform: scale(1.015);
+      transition: transform 1s;
+      opacity: 0.915;
+    }
+
+    #custom-nav a.dropdown-item:hover{
+      transform: none;
+    }
+
+    #custom-nav .navbar-brand {
+      font-weight: bold;
+      text-transform: capitalize;
+      /* transform: rotate(-180deg); */
+    }
+
+    .custom-toggler .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(254,255,170)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+
   </style>
 </head>
 
 <body style="background:black;color:white;">
 
-  <nav class="navbar navbar-expand-lg  bg-custom">
-    <a class="navbar-brand " href="#" style="">flickFindrr</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg" id="custom-nav">
+    <a class="navbar-brand " href="/" style="">flickFindr-r</a>
+    <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -188,11 +213,12 @@ background-repeat: no-repeat; */
       </ul>
       <form class="my-2 my-lg-0" style="display:flex;width:100%;" action="search" method="post">
         <input class="form-control mr-sm-2" style=""type="search" placeholder="Search for a movie/show" aria-label="Search" name="movieName">
-        <button class="btn btn-warning mr-sm-2" type="submit"> <img src="images/search.png" height="15px" width="15px" </button>
+        <button class="btn btn-warning mr-sm-2" style="margin-left:2px;" type="submit"> <img src="images/search.png" height="16.3px" width="16.3px" </button>
       </form>
     </div>
   </nav>
 
+<hr> <hr> <hr>
 
 <div class="container">
 	<div class="d-flex justify-content-center h-100">

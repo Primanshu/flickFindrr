@@ -5,9 +5,12 @@
     width: 45%;
     display: block;
     resize: none;
+    border-radius: 3px;
   }
-  img{
-    margin-right: 5px;
+
+  textarea:focus {
+    border-width: 1.5px;
+    border-color: #ffcd3c;
   }
 </style>
 
@@ -63,10 +66,6 @@
     <% first = false%>
     <%});%>
   </p>
-
-
-
-
 
   <%}else{%>
 
@@ -255,7 +254,7 @@
     <form class="comment-send" action="">
 
       <input type="hidden" name="titleId" value="<%=titleId%>">
-      <textarea id="commentBody" type="text" name="body" placeholder="Join The Discussion" maxlength="750" rows="5"></textarea>
+      <textarea id="commentBody" type="text" name="body" placeholder="Join The Discussion" maxlength="750" rows="1"></textarea>
       <button type="submit" class="btn btn-warning" name="button" style="margin-top: 5px">Submit</button>
     </form>
 

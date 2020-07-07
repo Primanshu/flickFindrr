@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <title>flickFindrr</title>
+  <title>FlickFindr-r</title>
   <!-- google fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/frontend.css">
@@ -34,8 +34,12 @@
   #custom-nav a:hover {
     text-decoration: none !important;
     transform: scale(1.015);
-    transition: tranform 1s;
+    transition: transform 1s;
     opacity: 0.915;
+  }
+
+  #custom-nav a.dropdown-item:hover{
+    transform: none;
   }
 
   #custom-nav .navbar-brand {
@@ -46,10 +50,6 @@
 
   .custom-toggler .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(254,255,170)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-  }
-
-  .custom-toggler.navbar-toggler {
-    border-color: #ffcd3c;
   }
 </style>
 
@@ -97,5 +97,7 @@
       </form>
     </div>
   </nav>
+  <div class="nav-border">
 
-  <hr> <hr>
+  </div>
+  <hr> <hr> <hr>
