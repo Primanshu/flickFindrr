@@ -38,7 +38,7 @@
 }
 
 .head:hover #heading{
-  animation-duration: 3s;
+  animation-duration: 2s;
   animation-name: slidein;
   width: 80%;
   visibility: visible;

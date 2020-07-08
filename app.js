@@ -171,11 +171,6 @@ app.get("/", function(req, res) {
   // res.send("hattbc");
   console.log(req.authCustom.username);
   console.log(req.authCustom.auth);
-  if (req.isAuthenticated()) {
-    console.log("kkkkkkkkkk");
-    req.user.firstNam = "afasdgf";
-    req.user.save();
-  }
   //console.log(req.user);
   res.render("home", {
     username: req.authCustom.username,
@@ -205,7 +200,15 @@ app.get('/logout', function(req, res) {
 var movieName = "";
 app.get('/search', function(req, res) {
   if (movieName.length === 0) {
-    res.render("emptysearch",{auth: req.authCustom.auth});
+    const h = "Looks like you haven't searched for anything!";
+    const pm = "Search for a movie/show in the search box provided above.";
+    res.render("respond", {
+      h: h,
+      pm: pm,
+      auth: req.authCustom.auth,
+      user: req.user,
+      username: req.authCustom.username
+    });
   } else {
     var findTitle = {
       method: 'GET',
@@ -271,10 +274,17 @@ app.get("/seewatchlist", function(req, res) {
   }
 });
 
+app.get("/developers", function(req, res) {
+  res.render("developers", {
+    username: req.authCustom.username,
+    auth: req.authCustom.auth
+  })
+});
+
 app.get("/show/:id", function(req, res) {
   //console.log(req.url);
 
-  // res.render('show',obj);
+  res.render('show', obj);
   //there are nested requests 1)for overall show 2)crew of show 3)user reviews
   //REQUEST FOR OVERVIEW
   var options = {
@@ -291,144 +301,145 @@ app.get("/show/:id", function(req, res) {
     }
   };
 
-  request(options, function(error, response, showX) {
-    if (error) {
-      throw new Error(error);
-    }
-
-    try {
-      const show = JSON.parse(showX);
-      //console.log(typeof(show));
-      //console.log(show);
-      const title = show.title.title;
-      let url = "Some constant failsafe url";
-      if (show.title.image) {
-        if (show.title.image.url) {
-          url = show.title.image.url
-        }
-      }
-      const genres = show.genres;
-      const titleType = show.title.titleType;
-      const year = show.title.year;
-      let synopsis = "Synopsis not added";
-      let rating = "Not Rated";
-      let summary = "Summary not added";
-      if (show.plotOutline) {
-        synopsis = show.plotOutline.text;
-      }
-      if (show.ratings.rating) {
-        rating = show.ratings.rating;
-      }
-      if (show.plotSummary) {
-        summary = show.plotSummary.text;;
-      }
-      //console.log(title,url,genres,titleType,year,synopsis,rating,summary);
-
-      //REQUEST FOR CREW
-      var crewGet = {
-        method: 'GET',
-        url: 'https://imdb8.p.rapidapi.com/title/get-top-crew',
-        qs: {
-          tconst: req.params.id
-        },
-        headers: {
-          'x-rapidapi-host': 'imdb8.p.rapidapi.com',
-          'x-rapidapi-key': key3,
-          useQueryString: true
-        }
-      };
-
-      request(crewGet, function(error, response, crewX) {
-        if (error) throw new Error(error);
-
-        try {
-          const crew = JSON.parse(crewX);
-          //console.log(crew);
-          let directors = "DDD";
-          let writers = [];
-          if (titleType == "movie") {
-            directors = crew.directors;
-            writers = crew.writers;
-          } else if (titleType == "tvSeries") {
-            const writersMain = crew.writers;
-            writersMain.forEach(function(writerx) {
-              if (writerx.job == "creator") {
-                writers.push(writerx);
-              }
-            });
-          } else {
-            directors = crew.directors;
-            writers = crew.writers;
-          }
-          //console.log(directors,writers);
-
-          //REQUEST for REVIEWS
-          var rev = {
-            method: 'GET',
-            url: 'https://imdb8.p.rapidapi.com/title/get-user-reviews',
-            qs: {
-              tconst: req.params.id
-            },
-            headers: {
-              'x-rapidapi-host': 'imdb8.p.rapidapi.com',
-              'x-rapidapi-key': key3,
-              useQueryString: true
-            }
-          };
-
-          request(rev, function(error, response, revs) {
-            if (error) throw new Error(error);
-
-            try {
-              const reviewsX = JSON.parse(revs);
-              const reviews = reviewsX.reviews;
-              //console.log(reviewsX);
-
-              Comment.find({
-                titleId: req.params.id
-              }, function(err, comments) {
-                if (!err) {
-                  const finalObject = {
-                    title: title,
-                    titleId: req.params.id,
-                    url: url,
-                    genres: genres,
-                    titleType: titleType,
-                    year: year,
-                    synopsis: synopsis,
-                    rating: rating,
-                    summary: summary,
-                    writers: writers,
-                    directors: directors,
-                    reviews: reviews,
-                    comments: comments,
-                    username: req.authCustom.username, //current username of logged in account
-                    auth: req.authCustom.auth
-                  };
-                  console.log(finalObject);
-                  res.render('show', finalObject);
-                }
-              })
-              //console.log(revs);
-            } catch (reviewserr) {
-              console.log("review error !");
-              console.log(reviewserr);
-            }
-
-          });
-        } catch (directorserr) {
-          console.log("directors error !");
-          console.log(directorserr);
-        }
-
-      });
-    } catch (showerr) {
-      console.log("show error !");
-      console.log(showerr);
-    }
-
-
-  });
+  // request(options, function(error, response, showX) {
+  //   if (error) {
+  //     throw new Error(error);
+  //   }
+  //
+  //   try {
+  //     const show = JSON.parse(showX);
+  //     //console.log(typeof(show));
+  //     //console.log(show);
+  //     const title = show.title.title;
+  //     let url = "Some constant failsafe url";
+  //     if (show.title.image) {
+  //       if (show.title.image.url) {
+  //         url = show.title.image.url
+  //       }
+  //     }
+  //     const genres = show.genres;
+  //     const titleType = show.title.titleType;
+  //     const year = show.title.year;
+  //     let synopsis = "Synopsis not added";
+  //     let rating = "Not Rated";
+  //     let summary = "Summary not added";
+  //     if (show.plotOutline) {
+  //       synopsis = show.plotOutline.text;
+  //     }
+  //     if (show.ratings.rating) {
+  //       rating = show.ratings.rating;
+  //     }
+  //     if (show.plotSummary) {
+  //       summary = show.plotSummary.text;;
+  //     }
+  //     //console.log(title,url,genres,titleType,year,synopsis,rating,summary);
+  //
+  //     //REQUEST FOR CREW
+  //     var crewGet = {
+  //       method: 'GET',
+  //       url: 'https://imdb8.p.rapidapi.com/title/get-top-crew',
+  //       qs: {
+  //         tconst: req.params.id
+  //       },
+  //       headers: {
+  //         'x-rapidapi-host': 'imdb8.p.rapidapi.com',
+  //         'x-rapidapi-key': key3,
+  //         useQueryString: true
+  //       }
+  //     };
+  //
+  //     request(crewGet, function(error, response, crewX) {
+  //       if (error) throw new Error(error);
+  //
+  //       try {
+  //         const crew = JSON.parse(crewX);
+  //         //console.log(crew);
+  //         let directors = "DDD";
+  //         let writers = [];
+  //         if (titleType == "movie") {
+  //           directors = crew.directors;
+  //           writers = crew.writers;
+  //         } else if (titleType == "tvSeries") {
+  //           const writersMain = crew.writers;
+  //           writersMain.forEach(function(writerx) {
+  //             if (writerx.job == "creator") {
+  //               writers.push(writerx);
+  //             }
+  //           });
+  //         } else {
+  //           directors = crew.directors;
+  //           writers = crew.writers;
+  //         }
+  //         //console.log(directors,writers);
+  //
+  //         //REQUEST for REVIEWS
+  //         var rev = {
+  //           method: 'GET',
+  //           url: 'https://imdb8.p.rapidapi.com/title/get-user-reviews',
+  //           qs: {
+  //             tconst: req.params.id
+  //           },
+  //           headers: {
+  //             'x-rapidapi-host': 'imdb8.p.rapidapi.com',
+  //             'x-rapidapi-key': key3,
+  //             useQueryString: true
+  //           }
+  //         };
+  //
+  //         request(rev, function(error, response, revs) {
+  //           if (error) throw new Error(error);
+  //
+  //           try {
+  //             const reviewsX = JSON.parse(revs);
+  //             const reviews = reviewsX.reviews;
+  //             //console.log(reviewsX);
+  //
+  //             Comment.find({
+  //               titleId: req.params.id
+  //             }, function(err, comments) {
+  //               if (!err) {
+  //                 const finalObject = {
+  //                   title: title,
+  //                   titleId: req.params.id,
+  //                   url: url,
+  //                   genres: genres,
+  //                   titleType: titleType,
+  //                   year: year,
+  //                   synopsis: synopsis,
+  //                   rating: rating,
+  //                   summary: summary,
+  //                   writers: writers,
+  //                   directors: directors,
+  //                   reviews: reviews,
+  //                   comments: comments,
+  //                   username: req.authCustom.username, //current username of logged in account
+  //                   auth: req.authCustom.auth
+  //                 };
+  //                 // console.log(finalObject);
+  //                 // res.json(finalObject);
+  //                 res.render('show',finalObject);
+  //               }
+  //             })
+  //             //console.log(revs);
+  //           } catch (reviewserr) {
+  //             console.log("review error !");
+  //             console.log(reviewserr);
+  //           }
+  //
+  //         });
+  //       } catch (directorserr) {
+  //         console.log("directors error !");
+  //         console.log(directorserr);
+  //       }
+  //
+  //     });
+  //   } catch (showerr) {
+  //     console.log("show error !");
+  //     console.log(showerr);
+  //   }
+  //
+  //
+  // });
 });
 
 app.post("/updateWatchlist", function(req, res) {
@@ -438,7 +449,15 @@ app.post("/updateWatchlist", function(req, res) {
     for (var i = 0; i < req.user.wishList.length; i++) {
       if (req.user.wishList[i].titleId == req.body.titleId) {
         present = true;
-        res.send("<h1>This movie is already present in your Watch list</h1>")
+        const h = "This movie is already present in your Watch list";
+        const pm = "Search for other movies with the help of search box provided above";
+        res.render("respond", {
+          h: h,
+          pm: pm,
+          auth: req.authCustom.auth,
+          user: req.user,
+          username: req.authCustom.username
+        });
         break;
       }
     }
@@ -453,10 +472,26 @@ app.post("/updateWatchlist", function(req, res) {
       });
       req.user.save();
       console.log(req.user);
-      res.send("<h1>Movie Added To Your Watch List</h1>");
+      const h = "Movie Added To Your Watch List";
+      const pm = "";
+      res.render("respond", {
+        h: h,
+        pm: pm,
+        auth: req.authCustom.auth,
+        user: req.user,
+        username: req.authCustom.username
+      });
     }
   } else {
-    res.send("<h1>Hi,You need to login first</h1>");
+    const h = "Hi,You need to login first";
+    const pm = "Click On 'Sign In' Provided In The Navigation Bar Above.";
+    res.render("respond", {
+      h: h,
+      pm: pm,
+      auth: req.authCustom.auth,
+      user: req.user,
+      username: req.authCustom.username
+    });
   }
 });
 
@@ -467,7 +502,7 @@ app.post('/deleteComment', function(req, res) {
       username: req.user.username,
       _id: commentId
     }, function(err, response) {
-      res.redirect('/');
+      res.redirect('back');
     })
   }
 });

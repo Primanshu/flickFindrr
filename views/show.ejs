@@ -19,8 +19,9 @@
 
   <h1><%= title%></h1>
 
-  <div class=" grid">
-    <div class="poster">
+  <div class="row justify-content-center">
+
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-8">
       <img src=" <%=url%>" class="img-poster" alt="No image">
       <style media="screen">
         .img-poster2 {
@@ -40,15 +41,31 @@
 
     </div>
 
-    <div class="nested">
-      <div class="nested-item">
-        <%= rating%>
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12 nested" >
+      <div  class="nested-item" >
+        <div class="rating" style="color:#b0b0b0 !important">
+          Rating
+        </div>
+        <div class="ratin">
+          <%= rating%>
+        </div>
       </div>
-      <div class="nested-item">
-        <%= genres%>
+      <div  class="nested-item">
+        <div class="genres" style="color:#b0b0b0 !important">
+          Genres
+        </div>
+        <div class="ratin">
+          <%=genres%>
+        </div>
+
       </div>
-      <div class="nested-item">
-        <%= titleType%>(<%= year%>)
+      <div  class="nested-item">
+        <div class="type" style="color:#b0b0b0 !important">
+          Type
+        </div>
+        <div class="ratin">
+          <%= titleType%>(<%= year%>)
+        </div>
       </div>
     </div>
   </div>
@@ -148,10 +165,22 @@
         </div>
 
         <div class="">
-          <strong><%=comment.username%></strong> <i><%=comment.date%></i>
+          <span ><strong style="display:inline"> <%=comment.username%> </strong>
+            <i style="display:inline"> <%=comment.date%>  </i>
+            <%if(comment.username == username){%>
+              <form style="display:inline"  action="/deleteComment" method="post">
+                <button type="submit" class="delete" name="delete" value="<%=comment._id%>">delete</button>
+              </form>
+              <%}%>
+          </span>
+
+
+
+
+
           <p><%= comment.body.substring(0,250)%><%if(comment.body.length > 250){%><a href="#c<%=i%>" id="c<%=i%>"><i>.....Read more</i></a><span style="display : none;" id="cid<%=i%>"><%=comment.body.substring(500)%></span>
             <%}%>
-          </p>
+
           <script type="text/javascript">
             $("#c<%=i%>").click(function(){
             console.log('asdafa');
@@ -162,23 +191,21 @@
 
 
             <!-- this section checks if the user has already liked the post or not on front end, precaution is taken care of checking liked and notLiked at backend-->
+            <br>
+            <span><%=comment.upvotes.sum%>
             <%if(comment.upvotes.users.find(function(x) {%>
             <!-- <finds if logged user exists in upvotes array or not -->
             <% return x == username %>
             <%}) != undefined){%>
-            <button type="submit" class="upvote" name="<%=comment._id%>" value="liked">downvote</button>
+            <button type="submit" class="upvote" name="<%=comment._id%>" value="liked"><i style="color: red !important" class="fa fa-heart" aria-hidden="true"></i></button>
             <!--if user exist-->
             <%}else{%>
-            <button type="submit" class="upvote" name="<%=comment._id%>" value="notLiked">upvote</button>
+            <button type="submit" class="upvote" name="<%=comment._id%>" value="notLiked"><i style="color: white !important" class="fa fa-heart" aria-hidden="true"></i></button>
             <!--if user doesnt exist-->
             <%}%>
 
-          <%if(comment.username == username){%>
-            <form class="delete" action="/deleteComment" method="post">
-              <button type="submit" name="delete" value="<%=comment._id%>">delete</button>
-            </form>
-            <%}%>
-
+          </span>
+          </p>
         </div>
 
       </li>
@@ -198,7 +225,7 @@
             $(this).text("login first");
           } else {
             if ($(this).val() == "liked") { //checking if the post is already liked by the current user
-              $(this).text("already liked");
+              // $(this).text("already liked");
               socket.emit("downvote", {
                 commentId: commentId,
                 username: "<%=username%>"
@@ -213,11 +240,13 @@
         });
 
         socket.on("upvote", function(comment) {
-          $('[name = ' + comment.commentId + ']').val('liked').text('downvote'); //changing notliked value(upvote) to liked value(downvote)
+          $('[name = ' + comment.commentId + ']').val('liked'); //changing notliked value(upvote) to liked value(downvote)
+          $('[name = ' + comment.commentId + ']').html('<i style="color: red !important" class="fa fa-heart" aria-hidden="true"></i>');
         })
 
         socket.on("downvote", function(comment) {
-          $('[name = ' + comment.commentId + ']').val('notliked').text('upvote'); //vice versa
+          $('[name = ' + comment.commentId + ']').val('notliked'); //vice versa
+          $('[name = ' + comment.commentId + ']').html('<i style="color: white !important" class="fa fa-heart" aria-hidden="true"></i>');
         })
 
       });
@@ -240,9 +269,7 @@
         })
 
         socket.on("comment added", function(newComment) { //after the comment is added we need to render it also
-          $("#comments-section").append($('<li class="comment-section">').html('<div ><img class="display-pic" src="https://api.adorable.io/avatars/285/newComment.username.png" alt="" height="60" width="60"></div><div class=""><strong>' +
-            newComment.username + '</strong> <i>' + newComment.date + '</i><p>' + newComment.body + '</p><button type="submit" class="upvote" name=' + newComment._id +
-            ' value="notLiked">upvote</button><form class="delete" action="/deleteComment" method="post"><button type="submit" name="delete" value=' + newComment._id + '>delete</button></form>'))
+          $("#comments-section").append($('<li class="comment-section">').html('<div ><img class="display-pic" src="https://api.adorable.io/avatars/285/newComment.username.png" alt="" height="60" width="60"></div><div class=""><span><strong>' + newComment.username + '</strong> <i>' + newComment.date + '</i><form style="display:inline" class="delete" action="/deleteComment" method="post"><button class="delete" type="submit" name="delete" value=' + newComment._id + '>delete</button></form></span><p>' + newComment.body + '<br><span>0 <button type="submit" class="upvote" name=' + newComment._id +' value="notLiked"><i style="color: white !important" class="fa fa-heart" aria-hidden="true"></i></button></span></p>'))
         })
         socket.on("comment failed", function() { //in case the comment is not updated or the user is not loggeg in or authorised
           $("#comments-section").append('nooooooo');
