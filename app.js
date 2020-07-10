@@ -141,7 +141,6 @@ request(options, function(error, response, body) {
   //console.log(jsObj);
 });
 
-
 app.get('/auth/facebook',
   passport.authenticate('facebook'));
 app.get('/auth/google',
@@ -168,7 +167,6 @@ app.get('/auth/facebook/imdb-project',
   });
 
 app.get("/", function(req, res) {
-  // res.send("hattbc");
   console.log(req.authCustom.username);
   console.log(req.authCustom.auth);
   //console.log(req.user);
@@ -250,7 +248,14 @@ app.get("/profile", function(req, res) {
       user: req.user
     });
   } else {
-    res.send("<h2>You need to log in to your account first</h2>")
+    const h = "You need to log in to your account first!"
+    const pm = "Click On 'Sign in' provided In Navigation Bar";
+    res.render("respond", {
+      h: h,
+      pm: pm,
+      auth: req.authCustom.auth,
+      user: req.user
+    })
   }
 });
 
@@ -258,9 +263,14 @@ app.get("/seewatchlist", function(req, res) {
   //access the database
   if (req.isAuthenticated()) {
     if (req.user.wishList.length === 0) {
-      res.write("<h1>Your watch list is currently empty.</h1>");
-      res.write("<h4>Search for some movies to add them into your watch list</h4>");
-      res.send();
+      const h = "Your watch list is currently empty.";
+      const pm = "Search for some movies to add them into your watch list"
+      res.render("respond", {
+        h: h,
+        pm: pm,
+        username: req.authCustom.username,
+        auth: req.authCustom.auth
+      })
     } else {
       console.log(req.user.wishList);
       res.render("watchlist", {
@@ -531,7 +541,14 @@ app.post('/changeSettings', function(req, res) {
 app.post("/changePassword", function(req, res) {
   if (req.isAuthenticated()) {
     if (req.body.newPass != req.body.confirmed) {
-      res.send("password dont match");
+      const h = "Password Does not match";
+      const pm = "Please Try Again!"
+      res.render("respond", {
+        h: h,
+        pm: pm,
+        username: req.authCustom.username,
+        auth: req.authCustom.auth
+      });
     } else {
       req.user.setPassword(req.body.confirmed, function() {
         req.user.save();
@@ -593,7 +610,14 @@ app.post("/remove", function(req, res) {
     req.user.save();
     res.redirect("/seewatchlist");
   } else {
-    res.send("<h2>You need to log in first!</h2>")
+    const h="You need to log in first!"
+    const pm="";
+    res.render("respond", {
+      h: h,
+      pm:pm,
+      username: req.authCustom.username,
+      auth: req.authCustom.auth
+    });
   }
 });
 //searching Movies

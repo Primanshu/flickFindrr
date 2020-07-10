@@ -1,6 +1,6 @@
 <%- include("header.ejs") -%>
 <style media="screen">
-  .profile-input{
+  .profile-input {
     margin-top: 15px;
     display: block;
     width: 45%;
@@ -23,27 +23,56 @@
   .black {
     color: black !important;
   }
+
+  .hide {
+    display: none;
+  }
 </style>
 
-<section>
+<section style="position:relative;top:60px;">
   <h3>profile image</h3>
   <img class="dp" src="https://api.adorable.io/avatars/285/<%=user.username%>.png" alt="" width="100px" height="100px">
   <h3>Username: <%=user.username%></h3>
   <hr>
   <a href="/seewatchlist" class="btn black btn-warning">See Your Watchlist!</a>
   <hr>
-  <h3>Change First and Last name: </h3>
-  <form class="" action="/changeSettings" method="post">
-    <input class="profile-input" type="text" name="firstName" value="<%=user.firstName%>" placeholder="new first name..">
-    <input class="profile-input" type="text" name="lastName" value="<%=user.lastName%>" placeholder="new last name..">
-    <button type="submit" class="btn btn-warning" name="button">Change!</button>
-  </form>
+  <div class="dropdown">
+    <button class="btn btn-warning change-first-last dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Change First and Last name:
+    </button>
+
+    <form class="hide form-first-last" action="/changeSettings" method="post">
+      <input class="profile-input" type="text" name="firstName" value="<%=user.firstName%>" placeholder="new first name..">
+      <input class="profile-input" type="text" name="lastName" value="<%=user.lastName%>" placeholder="new last name..">
+      <button type="submit" class="btn btn-warning" name="button">Change!</button>
+    </form>
+  </div>
   <hr>
-  <h3>Change Password: </h3>
-  <form class="" action="/changePassword" method="post">
-    <input class="profile-input" type="password" name="newPass" placeholder="new password">
-    <input class="profile-input" type="password" name="confirmed" placeholder="confirm new password">
-    <button type="submit" class="btn btn-warning" name="button">Confirm! </button>
-  </form>
+
+  <div class="dropdown">
+    <button class="btn btn-warning change-pass dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Change Password:
+    </button>
+
+    <form class="form-pass hide" action="/changePassword" method="post">
+      <input class="profile-input" type="password" name="newPass" placeholder="new password">
+      <input class="profile-input" type="password" name="confirmed" placeholder="confirm new password">
+      <button type="submit" class="btn btn-warning" name="button">Confirm! </button>
+    </form>
+
+  </div>
+
 </section>
+<hr>
+<hr>
+<script type="text/javascript">
+  $(".change-pass").click(function() {
+    $(".form-pass").toggleClass("hide");
+  })
+
+  $(".change-first-last").click(function() {
+    $(".form-first-last").toggleClass("hide");
+  })
+</script>
+
 <%- include("footer.ejs") -%>

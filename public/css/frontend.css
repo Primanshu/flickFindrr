@@ -24,3 +24,28 @@ a {
   color: #ffcd3c !important;
   font-size: 1em;
 }
+
+#hindi {
+  /* font-family: 'Caveat', cursive; */
+  font-family: 'Kalam', cursive;
+  /* font-family: 'Monoton', cursive; */
+}
+
+#hollywood {
+  font-family: 'Caveat', cursive;
+  font-family: 'Khula', sans-serif;
+  font-family: 'Monoton', cursive;
+  font-family: 'MuseoModerno', cursive;
+}
+
+@media only screen and (max-width: 474px) {
+  .btn {
+    font-size: 3vw !important;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .btn {
+    font-size: 3.5vw !important;
+  }
+}
