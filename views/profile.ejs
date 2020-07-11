@@ -27,14 +27,49 @@
   .hide {
     display: none;
   }
+
+  .container {
+    border-bottom: 1px solid white;
+  }
+
+  @media only screen and (max-width: 766px) {
+
+    /* .dp{
+      width: 100% !important;
+      height: 100% !important;
+    } */
+    .set-position {
+      position: relative !important;
+      top: 20px !important;
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+
+    .set-position-2 {
+      margin-left: 10%;
+    }
+  }
 </style>
 
-<section style="position:relative;top:60px;">
-  <h3>profile image</h3>
-  <img class="dp" src="https://api.adorable.io/avatars/285/<%=user.username%>.png" alt="" width="100px" height="100px">
-  <h3>Username: <%=user.username%></h3>
-  <hr>
-  <a href="/seewatchlist" class="btn black btn-warning">See Your Watchlist!</a>
+<section style="position:relative;top:30px;">
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-6 col-md-6 col-12 set-position">
+        <img class="dp" style="width:70%; height:70%;" src="https://api.adorable.io/avatars/285/<%=user.firstName%><%=user.lastName%>.png" alt="" width="100px" height="100px">
+      </div>
+      <div class="col-lg-6 col-md-6 col-12 set-position-2">
+        <h3><b>Username:</b> <%=user.username%></h3>
+        <h3><b>First Name:</b> <%=user.firstName%></h3>
+        <h3><b>Last Name:</b> <%=user.lastName%></h3>
+        <hr>
+        <a href="/seewatchlist" class="btn black btn-warning">See Your Watchlist!</a>
+        <hr>
+      </div>
+    </div>
+  </div>
+
   <hr>
   <div class="dropdown">
     <button class="btn btn-warning change-first-last dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
