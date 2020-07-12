@@ -10,69 +10,61 @@
   }
 </style>
 
-<!-- Carousel -->
-<div class="">
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <!-- <h1 align="center">All Time Hits</h1> -->
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-    </ol>
-
-    <div class="carousel-inner">
-      <div class="carousel-item active ">
 
 
-        <a href="show/tt0903747">
-          <img class="d-block w-100" src="https://cnet1.cbsistatic.com/img/X0ca14TIP9jQOQkayXvRlDZQ4jY=/1200x675/2014/06/17/60301c27-9d37-485d-91b9-cc6025e89760/breaking-bad-header.jpg" alt="First slide">
-        </a>
+<script type="text/javascript">
+  $.getJSON("https://raw.githubusercontent.com/RJrachit/IMDB-data/master/movie_of_the_week.json", function(json) {
+    console.log(json);
+    $("#featured-cover").html("<a href='show/" + json.id + "'><img class='covering' src=" + json.title.image.cover + "></a>");
+    $("#trailer").html('<iframe src="' + json.trailer + '" align="center" frameborder="0"></iframe>');
+    $("#cover-heading").html('<p>"' + json.heading + '"</p>');
+    // $(".head").html("<a href=show/" + json.id + "><img class='covering' src=" + json.title.image.cover + " height='' width=''></a><p id='heading' >" + '"' + json.heading + '"' + "</p>");
+    // $(".poster").html("<img class = 'img-poster' src="+json.title.image.url+">");
+    // $(".weeknested").html("")
+    // $("#heading").text('"'+json.heading+'"');
+    // $('.head').append("<a id='trailer' href='#'>Watch Trailer</a>")
+  });
+</script>
 
 
 
-      </div>
+<div class="row pd justify-content-center">
 
-      <div class="carousel-item">
-        <a href="show/tt3007572">
-          <img class="d-block w-100" src="https://jeonline.com.br/site/uploads/posts/locke-key-e-uma-das-decepcoes-da-netflix-de-2020-je-online-6d42038de524d8b22e0275da380c6570.jpg" alt="Second slide">
-        </a>
-      </div>
+  <div class=" col-lg-1 col-sm-1 col-md-1 col-1 icon">
+    <button id="featured" type="button" name="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+  </div>
 
-      <div class="carousel-item">
-        <a href="show/tt5232792">
-          <img class="d-block w-100" src="https://cdn.mos.cms.futurecdn.net/7jAF7F26C7knMDj6z3EMkG.jpg" alt="Third slide">
-        </a>
-      </div>
+  <div class="col-lg-11 col-sm-11 col-md-11 col-11 head">
 
-      <div class="carousel-item">
-        <a href="show/tt4574334/">
-          <img class="d-block w-100" src="https://images7.alphacoders.com/726/thumb-1920-726772.jpg" alt="Fourth slide">
-        </a>
-      </div>
+    <div id="featured-cover">
 
-      <div class="carousel-item">
-        <a href="show/tt7335184">
-          <img class="d-block w-100" src="https://www.thedailynic.com/wp-content/uploads/2019/07/My-Top-10-Netflix-Shows-to-Watch-You.png" alt="Second slide">
-        </a>
-      </div>
-
-      <!-- previous button -->
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <!-- next button-->
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
+
+
+    <div id="heading">
+      <div class="row justify-content-center " align="center">
+        <div class="col-lg-7 col-md-7 col-sm-7 col-7">
+          <div id="trailer" class="embed-responsive embed-responsive-16by9">
+
+          </div>
+        </div>
+        <div id="cover-heading" class="col-lg-5 col-md-5 col-sm-5 col-5" align="center" style="margin:auto">
+
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
-
+<script type="text/javascript">
+  $('#featured').click(function() {
+    $('#heading').toggleClass('visible');
+    $('#heading').toggleClass('not-visible');
+    $(".covering").toggleClass('img-animation');
+    $('#featured i').toggleClass('fa-angle-right fa-angle-left');
+  });
+</script>
 
 <hr>
 <!-- bootstrap grid featured movies-->
@@ -145,61 +137,6 @@
 </div>
 
 
-
-<script type="text/javascript">
-  $.getJSON("https://raw.githubusercontent.com/RJrachit/IMDB-data/master/movie_of_the_week.json", function(json) {
-    console.log(json);
-    $("#featured-cover").html("<a href='show/" + json.id + "'><img class='covering' src=" + json.title.image.cover + "></a>");
-    $("#trailer").html('<iframe src="' + json.trailer + '" align="center" frameborder="0"></iframe>');
-    $("#cover-heading").html('<p>"' + json.heading + '"</p>');
-    // $(".head").html("<a href=show/" + json.id + "><img class='covering' src=" + json.title.image.cover + " height='' width=''></a><p id='heading' >" + '"' + json.heading + '"' + "</p>");
-    // $(".poster").html("<img class = 'img-poster' src="+json.title.image.url+">");
-    // $(".weeknested").html("")
-    // $("#heading").text('"'+json.heading+'"');
-    // $('.head').append("<a id='trailer' href='#'>Watch Trailer</a>")
-  });
-</script>
-
-
-
-<div class="row pd justify-content-center">
-
-  <div class=" col-lg-1 col-sm-1 col-md-1 col-1 icon">
-    <button id="featured" type="button" name="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
-  </div>
-
-  <div class="col-lg-11 col-sm-11 col-md-11 col-11 head">
-
-    <div id="featured-cover">
-
-    </div>
-
-
-    <div id="heading">
-      <div class="row justify-content-center " align="center">
-        <div class="col-lg-7 col-md-7 col-sm-7 col-7">
-          <div id="trailer" class="embed-responsive embed-responsive-16by9">
-
-          </div>
-        </div>
-        <div id="cover-heading" class="col-lg-5 col-md-5 col-sm-5 col-5" align="center" style="margin:auto">
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<script type="text/javascript">
-  $('#featured').click(function() {
-    $('#heading').toggleClass('visible');
-    $('#heading').toggleClass('not-visible');
-    $(".covering").toggleClass('img-animation');
-    $('#featured i').toggleClass('fa-angle-right fa-angle-left');
-  });
-</script>
-
 <hr>
 <!-- bootstrap grid Hindi movies-->
 <h1 align="center">Top <span id="hindi"> बॉलीवुड </span></h1>
@@ -266,6 +203,73 @@
       <p class="image-description">6.9<a class="btn btn-success cust-view-details" href="show/tt6971752" role="button">View Details</a></p>
     </div>
 
+  </div>
+</div>
+
+
+
+<hr>
+
+
+<!-- Carousel -->
+<div class="">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <!-- <h1 align="center">All Time Hits</h1> -->
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active ">
+
+
+        <a href="show/tt0903747">
+          <img class="d-block w-100" src="https://cnet1.cbsistatic.com/img/X0ca14TIP9jQOQkayXvRlDZQ4jY=/1200x675/2014/06/17/60301c27-9d37-485d-91b9-cc6025e89760/breaking-bad-header.jpg" alt="First slide">
+        </a>
+
+
+
+      </div>
+
+      <div class="carousel-item">
+        <a href="show/tt3007572">
+          <img class="d-block w-100" src="https://jeonline.com.br/site/uploads/posts/locke-key-e-uma-das-decepcoes-da-netflix-de-2020-je-online-6d42038de524d8b22e0275da380c6570.jpg" alt="Second slide">
+        </a>
+      </div>
+
+      <div class="carousel-item">
+        <a href="show/tt5232792">
+          <img class="d-block w-100" src="https://cdn.mos.cms.futurecdn.net/7jAF7F26C7knMDj6z3EMkG.jpg" alt="Third slide">
+        </a>
+      </div>
+
+      <div class="carousel-item">
+        <a href="show/tt4574334/">
+          <img class="d-block w-100" src="https://images7.alphacoders.com/726/thumb-1920-726772.jpg" alt="Fourth slide">
+        </a>
+      </div>
+
+      <div class="carousel-item">
+        <a href="show/tt7335184">
+          <img class="d-block w-100" src="https://www.thedailynic.com/wp-content/uploads/2019/07/My-Top-10-Netflix-Shows-to-Watch-You.png" alt="Second slide">
+        </a>
+      </div>
+
+      <!-- previous button -->
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <!-- next button-->
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
   </div>
 </div>
 

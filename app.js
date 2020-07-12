@@ -90,7 +90,7 @@ passport.use(new GoogleStrategy({
     userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
   },
   function(req, accessToken, refreshToken, profile, cb) {
-    console.log(profile);
+    // console.log(profile);
     User.findOrCreate({
       googleId: profile.id
     }, function(err, user) {
@@ -104,7 +104,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://localhost:3000/auth/facebook/imdb-project"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
+    // console.log(profile);
     User.findOrCreate({
       facebookId: profile.id
     }, function(err, user) {
@@ -119,6 +119,16 @@ const autherisationFunc = function(req, res, next) {
   if (req.isAuthenticated()) {
     req.authCustom.auth = true;
     req.authCustom.username = req.user.username;
+    req.authCustom.firstName = "";
+    req.authCustom.lastName = "";
+    if(!req.user.firstName){
+     req.authCustom.firstName = "";
+     req.authCustom.lastName = "";
+   }else{
+     req.authCustom.firstName = req.user.firstName;
+     req.authCustom.lastName = req.user.lastName;
+   }
+console.log(req.authCustom,req.user);
   } else {
     req.authCustom.auth = false;
     req.authCustom.username = undefined;
@@ -161,7 +171,7 @@ app.get("/", function(req, res) {
     res.render("home", {
       username: req.authCustom.username,
       auth: req.authCustom.auth,
-      user: req.user
+      user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
     });
   }
 
@@ -188,7 +198,8 @@ app.post('/getUsername', function(req, res) {
 app.get('/getUsername', function(req, res) {
   res.render('getUsername', {
     username: "undefined",
-    auth: true
+    auth: true,
+    user:{firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
   });
 })
 
@@ -199,7 +210,7 @@ app.get("/signin", function(req, res) {
     res.render("signin", {
       username: req.authCustom.username,
       auth: req.authCustom.auth,
-      user: req.user
+      user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
     });
   }
 
@@ -212,7 +223,7 @@ app.get("/signup", function(req, res) {
     res.render("signup", {
       username: req.authCustom.username,
       auth: req.authCustom.auth,
-      user: req.user
+      user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
     });
   }
 
@@ -235,7 +246,7 @@ app.get('/search', function(req, res) {
         h: h,
         pm: pm,
         auth: req.authCustom.auth,
-        user: req.user,
+        user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName},
         username: req.authCustom.username
       });
     } else {
@@ -264,7 +275,8 @@ app.get('/search', function(req, res) {
         res.render("search", {
           results: jsObj.results,
           username: req.authCustom.username,
-          auth: req.authCustom.auth
+          auth: req.authCustom.auth,
+          user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
         });
       });
     }
@@ -277,11 +289,11 @@ app.get("/profile", function(req, res) {
     res.redirect('/getUsername');
   } else {
     if (req.isAuthenticated()) {
-      console.log(req.user);
+      // console.log(req.user);
       res.render("profile", {
         username: req.authCustom.username,
         auth: req.authCustom.auth,
-        user: req.user
+        user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
       });
     } else {
       const h = "You need to log in to your account first!"
@@ -290,7 +302,7 @@ app.get("/profile", function(req, res) {
         h: h,
         pm: pm,
         auth: req.authCustom.auth,
-        user: req.user
+        user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
       })
     }
   }
@@ -311,7 +323,7 @@ app.get("/seewatchlist", function(req, res) {
           pm: pm,
           username: req.authCustom.username,
           auth: req.authCustom.auth,
-          user: req.user
+          user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
         })
       } else {
         console.log(req.user.wishList);
@@ -319,7 +331,7 @@ app.get("/seewatchlist", function(req, res) {
           watchList: req.user.wishList,
           username: req.authCustom.username,
           auth: req.authCustom.auth,
-          user: req.user
+          user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
         });
       }
     } else {
@@ -335,7 +347,7 @@ app.get("/developers", function(req, res) {
     res.render("developers", {
       username: req.authCustom.username,
       auth: req.authCustom.auth,
-      user: req.user
+      user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
     })
   }
 
@@ -476,7 +488,7 @@ app.get("/show/:id", function(req, res) {
                       comments: comments,
                       username: req.authCustom.username, //current username of logged in account
                       auth: req.authCustom.auth,
-                      user: req.user
+                      user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
                     };
                     // console.log(finalObject);
                     // res.json(finalObject);
@@ -517,7 +529,7 @@ app.post("/updateWatchlist", function(req, res) {
           h: h,
           pm: pm,
           auth: req.authCustom.auth,
-          user: req.user,
+          user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName},
           username: req.authCustom.username
         });
         break;
@@ -540,7 +552,7 @@ app.post("/updateWatchlist", function(req, res) {
         h: h,
         pm: pm,
         auth: req.authCustom.auth,
-        user: req.user,
+        user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName},
         username: req.authCustom.username
       });
     }
@@ -551,7 +563,7 @@ app.post("/updateWatchlist", function(req, res) {
       h: h,
       pm: pm,
       auth: req.authCustom.auth,
-      user: req.user,
+      user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName},
       username: req.authCustom.username
     });
   }
@@ -611,6 +623,7 @@ app.post("/changePassword", function(req, res) {
         h: h,
         pm: pm,
         username: req.authCustom.username,
+          user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName},
         auth: req.authCustom.auth
       });
     } else {
@@ -686,7 +699,7 @@ app.post("/remove", function(req, res) {
   }
 });
 //searching Movies
-app.post(/search/, function(req, res) {
+app.post('/search', function(req, res) {
 
   movieName = req.body.movieName;
   console.log(movieName);
@@ -708,6 +721,8 @@ io.on('connection', (socket) => {
       const comment = new Comment({ //creating new comment
         titleId: newComment.titleId,
         username: newComment.username,
+        firstName:newComment.firstName,
+        lastName:newComment.lastName,
         date: date,
         body: newComment.body,
         upvotes: {
@@ -723,6 +738,8 @@ io.on('connection', (socket) => {
           socket.emit("comment added", {
             titleId: newComment.titleId,
             username: newComment.username,
+            firstName:newComment.firstName,
+            lastName:newComment.lastName,
             date: date,
             body: newComment.body,
             upvotes: {

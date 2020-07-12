@@ -28,27 +28,11 @@
     display: none;
   }
 
-  .container {
-    border-bottom: 1px solid white;
+  .set-position{
+    display:grid;
+    grid-template-rows:1fr 1fr 1fr 0.8fr;
   }
 
-  @media only screen and (max-width: 766px) {
-
-    /* .dp{
-      width: 100% !important;
-      height: 100% !important;
-    } */
-    .set-position {
-      position: relative !important;
-      top: 20px !important;
-      margin-left: 10%;
-      margin-right: 10%;
-    }
-
-    .set-position-2 {
-      margin-left: 10%;
-    }
-  }
 </style>
 
 <section style="position:relative;top:30px;">
@@ -56,46 +40,55 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-lg-6 col-md-6 col-12 set-position">
-        <img class="dp" style="width:70%; height:70%;" src="https://api.adorable.io/avatars/285/<%=user.firstName%><%=user.lastName%>.png" alt="" width="100px" height="100px">
+      <div class="col-lg-6 col-md-6 col-lg-6 col-sm-6 col-12" align="center">
+        <img class="dp" style="width:50%" src="https://api.adorable.io/avatars/285/<%=user.firstName%> <%=user.lastName%>.png" alt="">
       </div>
-      <div class="col-lg-6 col-md-6 col-12 set-position-2">
-        <h3><b>Username:</b> <%=user.username%></h3>
-        <h3><b>First Name:</b> <%=user.firstName%></h3>
-        <h3><b>Last Name:</b> <%=user.lastName%></h3>
-        <hr>
-        <a href="/seewatchlist" class="btn black btn-warning">See Your Watchlist!</a>
-        <hr>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-12 set-position">
+
+        <div class="">
+          <h4>Username: <%=username%></h4>
+        </div>
+        <div class="">
+          <h4>First Name: <%=user.firstName%></h4>
+        </div>
+        <div class="">
+          <h4>Last Name: <%=user.lastName%></h4>
+        </div>
+        <div class="">
+          <a href="/seewatchlist" class="btn black btn-warning" style="width:100%">See Your Watchlist!</a>
+        </div>
+
+
       </div>
     </div>
+    <div class="dropdown">
+      <button class="btn btn-warning change-first-last dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Change First and Last name:
+      </button>
+
+      <form class="hide form-first-last" action="/changeSettings" method="post">
+        <input class="profile-input" type="text" name="firstName" value="<%=user.firstName%>" placeholder="new first name.." required>
+        <input class="profile-input" type="text" name="lastName" value="<%=user.lastName%>" placeholder="new last name..">
+        <button type="submit" class="btn btn-warning" name="button">Change!</button>
+      </form>
+    </div>
+    <hr>
+
+    <div class="dropdown">
+      <button class="btn btn-warning change-pass dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Change Password:
+      </button>
+
+      <form class="form-pass hide" action="/changePassword" method="post">
+        <input class="profile-input" type="password" name="newPass" placeholder="new password" required>
+        <input class="profile-input" type="password" name="confirmed" placeholder="confirm new password" required>
+        <button type="submit" class="btn btn-warning" name="button">Confirm! </button>
+      </form>
+
+    </div>
+
   </div>
 
-  <hr>
-  <div class="dropdown">
-    <button class="btn btn-warning change-first-last dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Change First and Last name:
-    </button>
-
-    <form class="hide form-first-last" action="/changeSettings" method="post">
-      <input class="profile-input" type="text" name="firstName" value="<%=user.firstName%>" placeholder="new first name..">
-      <input class="profile-input" type="text" name="lastName" value="<%=user.lastName%>" placeholder="new last name..">
-      <button type="submit" class="btn btn-warning" name="button">Change!</button>
-    </form>
-  </div>
-  <hr>
-
-  <div class="dropdown">
-    <button class="btn btn-warning change-pass dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Change Password:
-    </button>
-
-    <form class="form-pass hide" action="/changePassword" method="post">
-      <input class="profile-input" type="password" name="newPass" placeholder="new password">
-      <input class="profile-input" type="password" name="confirmed" placeholder="confirm new password">
-      <button type="submit" class="btn btn-warning" name="button">Confirm! </button>
-    </form>
-
-  </div>
 
 </section>
 <hr>
