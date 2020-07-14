@@ -28,11 +28,14 @@
     display: none;
   }
 
-  .set-position{
-    display:grid;
-    grid-template-rows:1fr 1fr 1fr 0.8fr;
+  .set-position {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 0.8fr;
   }
 
+  a:hover {
+    cursor: pointer;
+  }
 </style>
 
 <section style="position:relative;top:30px;">
@@ -61,32 +64,42 @@
 
       </div>
     </div>
-    <div class="dropdown">
-      <button class="btn btn-warning change-first-last dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Change First and Last name:
-      </button>
+  </div>
 
-      <form class="hide form-first-last" action="/changeSettings" method="post">
-        <input class="profile-input" type="text" name="firstName" value="<%=user.firstName%>" placeholder="new first name.." required>
-        <input class="profile-input" type="text" name="lastName" value="<%=user.lastName%>" placeholder="new last name..">
-        <button type="submit" class="btn btn-warning" name="button">Change!</button>
-      </form>
+
+  <div class="dropdown">
+    <a class="settings">Settings?</a>
+
+    <div class="setting-links-custom hide">
+
+      <div class="dropdown setting-links hide">
+          <button class="btn btn-warning change-first-last dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Change First and Last name:
+          </button>
+
+          <form class="hide form-first-last" action="/changeSettings" method="post">
+            <input class="profile-input" type="text" name="firstName" value="<%=user.firstName%>" placeholder="new first name.." required>
+            <input class="profile-input" type="text" name="lastName" value="<%=user.lastName%>" placeholder="new last name..">
+            <button type="submit" class="btn btn-warning" name="button">Change!</button>
+          </form>
+      </div>
+
+      <hr>
+
+      <!-- Change password -->
+      <div class="dropdown setting-links hide">
+          <button class="btn btn-warning change-pass dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Change Password:
+          </button>
+
+          <form class="form-pass hide" action="/changePassword" method="post">
+            <input class="profile-input" type="password" name="newPass" placeholder="new password" required>
+            <input class="profile-input" type="password" name="confirmed" placeholder="confirm new password" required>
+            <button type="submit" class="btn btn-warning" name="button">Confirm! </button>
+          </form>
+      </div>
+
     </div>
-    <hr>
-
-    <div class="dropdown">
-      <button class="btn btn-warning change-pass dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Change Password:
-      </button>
-
-      <form class="form-pass hide" action="/changePassword" method="post">
-        <input class="profile-input" type="password" name="newPass" placeholder="new password" required>
-        <input class="profile-input" type="password" name="confirmed" placeholder="confirm new password" required>
-        <button type="submit" class="btn btn-warning" name="button">Confirm! </button>
-      </form>
-
-    </div>
-
   </div>
 
 
@@ -94,12 +107,17 @@
 <hr>
 <hr>
 <script type="text/javascript">
-  $(".change-pass").click(function() {
+  $(".change-pass").click(() => {
     $(".form-pass").toggleClass("hide");
   })
 
-  $(".change-first-last").click(function() {
+  $(".change-first-last").click(() => {
     $(".form-first-last").toggleClass("hide");
+  })
+
+  $(".settings").click(() => {
+    $(".setting-links").toggleClass("hide");
+    $(".setting-links-custom").toggleClass("hide")
   })
 </script>
 
