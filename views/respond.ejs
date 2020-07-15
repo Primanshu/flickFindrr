@@ -1,11 +1,22 @@
 <%- include("header.ejs") -%>
 
-<hr> <hr>
-<h5><%=h%></h5>
-<p><%=pm%></p>
-<br>
-<p>Click Below To Go Back!</p>
-<button type="button" class="btn btn-warning" onclick="history.back()" name="button">Go Back!</button>
-<hr> <hr>
+<style media="screen">
+  .container{
+  align-content: center;
+  position:absolute;
+  top:50%;
+  left:50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+<div class="container">
+  <h4><%=h%></h4>
+  
+  <br>
+  <p>Click Below To Go Back!</p>
+  <button type="button" class="btn btn-warning" onclick="history.back()" name="button">Go Back!</button>
+</div>
+
+
 
 <%- include("footer.ejs") -%>

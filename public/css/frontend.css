@@ -3,15 +3,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  background: #06000f !important;
-  color: #ffcd3c !important;
+  background: #06000f ;
+  color: #ffcd3c;
 }
 
 #page-container {
   position: relative;
-  min-height: 80vh;
-  background-color: #000000;
-  background-image: url("https://www.transparenttextures.com/patterns/gplay.png") !important;
+  min-height: 85vh;
+  color: #ffcd3c;
+  background-color: rgb(0,0,0,1);
+  background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
 }
 
 nav {
@@ -85,10 +86,10 @@ a {
   background-image: url("/images/textures/concrete-wall.png") !important;
 }
 
-.add-texture-2 {
+/* .add-texture-2 {
   background-color: #000000 !important;
   background-image: url("/images/textures/black-thread-light.png") !important;
-}
+} */
 
 .add-texture-3 {
   background-color: #000000;

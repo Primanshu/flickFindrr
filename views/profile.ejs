@@ -1,10 +1,12 @@
 <%- include("header.ejs") -%>
 
 <style media="screen">
+  #page-container{
+    background-color:white !important;
+  }
   .profile-input {
     margin-top: 15px;
     display: block;
-
     border-radius: 5px;
     border-width: 0px;
   }
@@ -40,7 +42,7 @@
         <img class="dp" style="width:50%" src="https://api.adorable.io/avatars/285/<%=user.firstName%> <%=user.lastName%>.png" alt="">
 
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-12 set-position" style="background:#f7f7f7;color:black;padding:2%;border-radius:2%;">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-12 set-position" style="background:#ededed;color:black;padding:2%;border-radius:8px 8px;">
 
         <div class="">
           <button type="button" class="btn" name="button">
@@ -58,7 +60,7 @@
           </button>
         </div>
         <div class="">
-          <a href="/seewatchlist" style="width:100%"><button type="button" class="btn btn-warning" style="width:100%" name="button">See Your Watchlist!</button></a>
+          <a href="/seewatchlist" style="width:100%"><button type="button" class="btn btn-warning" style="width:100%;" name="button">See Your Watchlist!</button></a>
         </div>
 
       </div>
@@ -66,7 +68,7 @@
   </div>
 
 </section>
-<section style="background:#f7f7f7;color:black;padding:2%;">
+<section style="background:#ededed;color:black;padding:2%;border-radius:8px 8px;">
 
   <div class="container">
 
