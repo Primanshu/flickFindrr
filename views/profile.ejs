@@ -1,4 +1,5 @@
 <%- include("header.ejs") -%>
+
 <style media="screen">
   .profile-input {
     margin-top: 15px;
@@ -7,8 +8,6 @@
     border-radius: 5px;
     border-width: 0px;
   }
-
-
 
   section button {
     margin-top: 1%;
@@ -38,19 +37,25 @@
     <div class="row">
 
       <div class="col-lg-6 col-md-6 col-lg-6 col-sm-6 col-12" align="center">
-        <img class="dp" style="width:50%" src="https://api.adorable.io/avatars/285/<%=user.firstName%> <%=user.lastName%>.png" alt="" >
+        <img class="dp" style="width:50%" src="https://api.adorable.io/avatars/285/<%=user.firstName%> <%=user.lastName%>.png" alt="">
 
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-12 set-position" style="background:#f7f7f7;color:black;padding:2%;border-radius:2%;">
 
         <div class="">
-          <button type="button" class="btn" name="button"><h5>Username : <strong><%=username%></strong></h5></button>
+          <button type="button" class="btn" name="button">
+            <h5>Username : <strong><%=username%></strong></h5>
+          </button>
         </div>
         <div class="">
-          <button type="button" class="btn" name="button"><h5>First Name: <strong><%=user.firstName%></strong></h5></button>
+          <button type="button" class="btn" name="button">
+            <h5>First Name: <strong><%=user.firstName%></strong></h5>
+          </button>
         </div>
         <div class="">
-          <button type="button" class="btn" name="button"><h5>Last Name: <strong><%=user.lastName%></strong></h5></button>
+          <button type="button" class="btn" name="button">
+            <h5>Last Name: <strong><%=user.lastName%></strong></h5>
+          </button>
         </div>
         <div class="">
           <a href="/seewatchlist" style="width:100%"><button type="button" class="btn btn-warning" style="width:100%" name="button">See Your Watchlist!</button></a>
@@ -69,29 +74,27 @@
 
       <div class="col-lg-6 col-md-6 col-sm-6 col-12">
         <div class=" ">
+          <p>Change First and Last name:</p>
 
-              <p>Change First and Last name:</p>
-
-
-            <div style="margin-bottom:9px;">
-              <form class=" form-first-last" action="/changeSettings" method="post">
-                <input class="form-control profile-input" type="text" name="firstName"  placeholder="First Name" required>
-                <input class="form-control profile-input" type="text" name="lastName"  placeholder="Last Name">
-                <button type="submit" class="btn btn-warning" name="button">Confirm</button>
-              </form>
-            </div>
+          <div style="margin-bottom:9px;">
+            <form class=" form-first-last" action="/changeSettings" method="post">
+              <input class="form-control profile-input" type="text" name="firstName" placeholder="First Name" required>
+              <input class="form-control profile-input" type="text" name="lastName" placeholder="Last Name">
+              <button type="submit" class="btn btn-warning" name="button">Confirm</button>
+            </form>
+          </div>
 
         </div>
       </div>
 
       <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-            <p>Change Password:</p>
+        <p>Change Password:</p>
         <div style="margin-bottom:9px;">
-            <form class="form-pass " action="/changePassword" method="post">
-              <input class="form-control profile-input" type="password" name="newPass" placeholder="New Password" required>
-              <input class="form-control profile-input" type="password" name="confirmed" placeholder="Confirm Password" required>
-              <button type="submit" class="btn btn-warning" name="button">Confirm </button>
-            </form>
+          <form class="form-pass " action="/changePassword" method="post">
+            <input class="form-control profile-input" type="password" name="newPass" placeholder="New Password" required>
+            <input class="form-control profile-input" type="password" name="confirmed" placeholder="Confirm Password" required>
+            <button type="submit" class="btn btn-warning" name="button">Confirm </button>
+          </form>
         </div>
       </div>
 
@@ -99,21 +102,5 @@
 
   </div>
 </section>
-
-
-<script type="text/javascript">
-  $(".change-pass").click(() => {
-    $(".form-pass").toggleClass("hide");
-  })
-
-  $(".change-first-last").click(() => {
-    $(".form-first-last").toggleClass("hide");
-  })
-
-  $(".settings").click(() => {
-    $(".setting-links").toggleClass("hide");
-    $(".setting-links-custom").toggleClass("hide")
-  })
-</script>
 
 <%- include("footer.ejs") -%>

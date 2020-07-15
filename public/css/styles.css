@@ -22,7 +22,9 @@
   transition: 1.1s;
   opacity: 0.35;
 }
-
+.img-wrap:hover{
+  background-color: black;
+}
 
 .icon button{
   position: absolute;

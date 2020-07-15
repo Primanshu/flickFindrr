@@ -10,6 +10,8 @@ body {
 #page-container {
   position: relative;
   min-height: 80vh;
+  background-color: #000000;
+  background-image: url("https://www.transparenttextures.com/patterns/gplay.png") !important;
 }
 
 nav {
@@ -61,7 +63,7 @@ a {
   line-height: 2;
 }
 
-.home-page-intro h2 span{
+.home-page-intro h2 span {
   transform: rotate(5deg);
   color: #fcbf1e;
   border-radius: 10% 15% 20% 10%;
@@ -80,7 +82,17 @@ a {
 
 .add-texture-1 {
   background-color: #f2f1e6 !important;
-  background-image: url(http://www.transparenttextures.com/patterns/concrete-wall.png) !important;
+  background-image: url("/images/textures/concrete-wall.png") !important;
+}
+
+.add-texture-2 {
+  background-color: #000000 !important;
+  background-image: url("/images/textures/black-thread-light.png") !important;
+}
+
+.add-texture-3 {
+  background-color: #000000;
+  background-image: url("/images/textures/gplay.png") !important;
 }
 
 #hindi {
