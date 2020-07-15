@@ -186,7 +186,7 @@ background-repeat: no-repeat; */
         font-family: 'Monoton', cursive;
       }
     </style>
-    <a class="navbar-brand " href="/" style="">flickFindr-r</a>
+    <a class="navbar-brand " href="/" style="">flickFindrr</a>
     <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -196,18 +196,18 @@ background-repeat: no-repeat; */
 
       <ul class="navbar-nav ml-auto" style="width:100%;">
         <li class="nav-item active">
-          <a class="nav-link" href="/" style="">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/" style=""><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
         </li>
 
         <%if(!auth){%>
         <li class="nav-item active">
-          <a class="nav-link" href="/signin">Sign In</a>
+          <a class="nav-link" href="/signin"><i class="far fa-address-book"></i> Sign In</a>
         </li>
         <%}%>
 
 
         <li class="nav-item active">
-          <a class="nav-link" href="/seewatchlist">Watchlist</a>
+          <a class="nav-link" href="/seewatchlist"><i class="fas fa-mobile-alt"></i> Watchlist</a>
         </li>
         <%if(auth){%>
         <li class="nav-item dropdown">
@@ -223,7 +223,7 @@ background-repeat: no-repeat; */
 
       </ul>
       <form class="my-2 my-lg-0" style="display:flex;width:100%;" action="search" method="post">
-        <input class="form-control mr-sm-2" style=""type="search" placeholder="Search for a movie/show" aria-label="Search" name="movieName">
+        <input class="form-control mr-sm-2" style=""type="search" placeholder="Find Your Flick..." aria-label="Search" name="movieName">
         <button class="btn btn-warning mr-sm-2" style="margin-left:2px;" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
       </form>
     </div>

@@ -38,7 +38,7 @@ align-content: center;
 }
 
 .card{
-height: 370px;
+height: 450px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
@@ -153,7 +153,7 @@ a {
         font-family: 'Monoton', cursive;
       }
     </style>
-    <a class="navbar-brand" href="/" ><b>flickFindr-r</b></a>
+    <a class="navbar-brand" href="/" ><b>flickFindrr</b></a>
     <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -163,18 +163,18 @@ a {
 
       <ul class="navbar-nav ml-auto" style="width:100%;">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
         </li>
 
         <%if(!auth){%>
           <li class="nav-item active">
-            <a class="nav-link" href="/signin">Sign In</a>
+            <a class="nav-link" href="/signin"><i class="far fa-address-book"></i> Sign In</a>
           </li>
         <%}%>
 
 
         <li class="nav-item active">
-          <a class="nav-link" href="/seewatchlist">Watchlist</a>
+          <a class="nav-link" href="/seewatchlist"><i class="fas fa-mobile-alt"></i> Watchlist</a>
         </li>
         <%if(auth){%>
           <li class="nav-item dropdown">
@@ -192,7 +192,7 @@ a {
 
       </ul>
       <form class="my-2 my-lg-0" style="display:flex;width:100%;" action="search" method="post">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search for a movie/show" aria-label="Search" name="movieName">
+        <input class="form-control mr-sm-2" type="search" placeholder="Find Your Flick..." aria-label="Search" name="movieName">
 				<button class="btn btn-warning mr-sm-2" style="margin-left:2px;" type="submit"><i class="fa fa-search" aria-hidden="true"></i> </button>
       </form>
     </div>
@@ -221,12 +221,16 @@ a {
 						</div>
 						<input type="text" name="lastName" class="form-control" placeholder="Last Name(optional)">
 					</div>
+
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						<input type="text" name="username" class="form-control" placeholder="username" required>
 					</div>
+					<%if(message){%>
+            <p align="center" style="color:white"><%=message%></p>
+          <%}%>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -238,6 +242,7 @@ a {
 						<input type="submit" value="Sign Up" class="btn float-right login_btn">
 					</div>
 				</form>
+				<p style="font-size:13px;color:white">*username can't be changed later</p>
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">

@@ -7,6 +7,11 @@ body {
   color: #ffcd3c !important;
 }
 
+#page-container {
+  position: relative;
+  min-height: 80vh;
+}
+
 nav {
   position: fixed;
 }
@@ -30,14 +35,21 @@ a {
 }
 
 .home-page-intro h2 {
-  display: inline;
+  display: inline-block;
 }
-.home-page-intro h3{
+
+.home-page-intro {
+  color: black;
+}
+
+.home-page-intro h3 {
   font-family: 'MuseoModerno', cursive;
 }
+
 .home-page-intro {
   margin-top: 10%;
   font-family: 'MuseoModerno', cursive;
+  transform: scale(1.2);
   line-height: 1.7;
 }
 
@@ -45,23 +57,30 @@ a {
   color: black;
   border-radius: 10% 15% 20% 10%;
   background-color: #fcbf1e;
-  font-family: 'MuseoModerno', cursive !important ;
-  line-height: 2;
-}
-.home-page-intro span h2{
-  color: black;
-  border-radius: 10% 15% 20% 10%;
-  background-color: #fcbf1e;
-  font-family: 'MuseoModerno', cursive !important ;
+  font-family: 'MuseoModerno', cursive !important;
   line-height: 2;
 }
 
-.carousel-custom div{
+.home-page-intro h2 span{
+  transform: rotate(5deg);
+  color: #fcbf1e;
+  border-radius: 10% 15% 20% 10%;
+  background-color: black;
+  font-family: 'MuseoModerno', cursive !important;
+  line-height: 2;
+}
+
+.carousel-custom div {
   /* border-radius: 20px; */
-  border: 0.1px dotted white;
+  /* border: 0.1px solid white;
   border-left: 0px;
   border-right: 0px;
-  right: 0px;
+  right: 0px; */
+}
+
+.add-texture-1 {
+  background-color: #f2f1e6 !important;
+  background-image: url(http://www.transparenttextures.com/patterns/concrete-wall.png) !important;
 }
 
 #hindi {

@@ -2,7 +2,7 @@
 
 
 <!-- <link rel="stylesheet" href="css/show.css"> -->
-<div class="container" style="position:relative;top:60px;">
+<div class="container">
 
   <h1><%= title%></h1>
 
@@ -197,7 +197,9 @@
 
       </li>
     <%});%>
-
+      <li id="logInFirst" style="display:none;margin-left:80px;color:#bfbfbf">
+        <p>You need to log in first. Click <a href="/signin"><i>here</i></a> to login.</p>
+      </li>
     </ul>
 
     <script type="text/javascript">
@@ -261,14 +263,13 @@
           $("#comments-section").append($('<li class="comment-section">').html('<div ><img class="display-pic" src="https://api.adorable.io/avatars/285/'+newComment.firstName+' '+newComment.lastName+'.png" alt="" height="60" width="60"></div><div class=""><span><strong>' + newComment.username + '</strong> <i>' + newComment.date + '</i><form style="display:inline" class="delete" action="/deleteComment" method="post"><button class="delete" type="submit" name="delete" value=' + newComment._id + '>delete</button></form></span><p>' + newComment.body + '<br><span>0 <button type="submit" class="upvote" name=' + newComment._id +' value="notLiked"><i style="color: white !important" class="fa fa-heart" aria-hidden="true"></i></button></span></p>'))
         })
         socket.on("comment failed", function() { //in case the comment is not updated or the user is not loggeg in or authorised
-          $("#comments-section").append('nooooooo');
+          $("#logInFirst").css("display", "block");
         })
       });
     </script>
 
 
     <form class="comment-send" action="">
-
       <input type="hidden" name="titleId" value="<%=titleId%>">
       <textarea id="commentBody" type="text" class="form-control" rows="4" name="body" placeholder="Your Views?" maxlength="750" rows="1" required></textarea><br>
       <button type="submit" class="btn btn-warning" name="button" style="margin-top: -10px">Submit</button>
@@ -287,5 +288,5 @@
       });
     </script>
 </div>
-
+<hr><hr><hr>
 <%-include("footer.ejs")-%>

@@ -9,9 +9,6 @@
     text-decoration: none !important;
   }
   @media only screen and (max-width: 767px) {
-    .home-page-intro h1 {
-      transform: rotate(-3.7deg);
-    }
     .home-page-intro {
       margin-top: 2% !important;
     }
@@ -23,40 +20,16 @@
 
 
 
-<script type="text/javascript">
-  $.getJSON("https://raw.githubusercontent.com/RJrachit/IMDB-data/master/movie_of_the_week.json", function(json) {
-    console.log(json);
-    $("#featured-cover").html("<a href='show/" + json.id + "'><img class='covering' src=" + json.title.image.cover + "></a>");
-    $("#trailer").html('<iframe src="' + json.trailer + '" align="center" frameborder="0"></iframe>');
-    $("#cover-heading").html('<p>"' + json.heading + '"</p>');
-    // $(".head").html("<a href=show/" + json.id + "><img class='covering' src=" + json.title.image.cover + " height='' width=''></a><p id='heading' >" + '"' + json.heading + '"' + "</p>");
-    // $(".poster").html("<img class = 'img-poster' src="+json.title.image.url+">");
-    // $(".weeknested").html("")
-    // $("#heading").text('"'+json.heading+'"');
-    // $('.head').append("<a id='trailer' href='#'>Watch Trailer</a>")
-  });
-</script>
-
-
-<script type="text/javascript">
-  $('#featured').click(function() {
-    $('#heading').toggleClass('visible');
-    $('#heading').toggleClass('not-visible');
-    $(".covering").toggleClass('img-animation');
-    $('#featured i').toggleClass('fa-angle-right fa-angle-left');
-  });
-</script>
-
-
 <!-- Carousel -->
-<div class="row">
-
-  <div class="col-lg-2 col-md-1 col-sm-4 col-2">
+<div class="row justify-content-center add-texture-1" style="background:white" >
+  <div class="col-lg-2 col-md-1 col-sm-4 col-2 ">
 
   </div>
+
   <div class="col-lg-3 col-md-4 col-8 home-page-intro">
-    <h1><span>FlickFindrr</span></h1>
-    <h3>Find Your <span class="flick"><h2>Flick</h2></span></h3>
+    <h1 id="home-page-intro-h1"><span>FlickFindrr</span></h1>
+    <h3 style="display: inline;">Find Your </h3>
+    <h2 id="home-page-intro-h2"><span class="flick">Flick</span></h2>
   </div>
 
   <div class="col-lg-7 col-md-7 col-sm-12 col-12 carousel-custom">
@@ -116,11 +89,11 @@
   </div>
 </div>
 
-
 <hr>
+
 <!-- bootstrap grid featured movies-->
 <h1 align="center">Top <span id="hollywood"> HOLLYWOOD</span></h1>
-<div class="container-fluid">
+<div class="container-fluid add-texture-2">
   <div class="row pd">
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
@@ -219,10 +192,35 @@
 </div>
 
 
+<script type="text/javascript">
+  $.getJSON("https://raw.githubusercontent.com/RJrachit/IMDB-data/master/movie_of_the_week.json", function(json) {
+    console.log(json);
+    $("#featured-cover").html("<a href='show/" + json.id + "'><img class='covering' src=" + json.title.image.cover + "></a>");
+    $("#trailer").html('<iframe src="' + json.trailer + '" align="center" frameborder="0"></iframe>');
+    $("#cover-heading").html('<p>"' + json.heading + '"</p>');
+    // $(".head").html("<a href=show/" + json.id + "><img class='covering' src=" + json.title.image.cover + " height='' width=''></a><p id='heading' >" + '"' + json.heading + '"' + "</p>");
+    // $(".poster").html("<img class = 'img-poster' src="+json.title.image.url+">");
+    // $(".weeknested").html("")
+    // $("#heading").text('"'+json.heading+'"');
+    // $('.head').append("<a id='trailer' href='#'>Watch Trailer</a>")
+  });
+</script>
+
+
+<script type="text/javascript">
+  $('#featured').click(function() {
+    $('#heading').toggleClass('visible');
+    $('#heading').toggleClass('not-visible');
+    $(".covering").toggleClass('img-animation');
+    $('#featured i').toggleClass('fa-angle-right fa-angle-left');
+  });
+</script>
+
+
 <!-- bootstrap grid Hindi movies-->
 <h1 align="center">Top <span id="hindi"> बॉलीवुड </span></h1>
 
-<div class="container-fluid">
+<div class="container-fluid add-texture-2">
   <div class="row pd">
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-6 img-wrap">
@@ -289,6 +287,14 @@
 
 <hr>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#home-page-intro-h1").css({"transform":"rotate(-365deg)","transition":"transform 2.5s"});
+  })
+  $(document).ready(function(){
+    $("#home-page-intro-h2").css({"transform":"rotate(363deg)","transition":"transform 2.5s"});
+  })
+</script>
 
 
 <%-include("footer.ejs")-%>

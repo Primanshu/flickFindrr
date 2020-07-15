@@ -3,14 +3,12 @@
   .profile-input {
     margin-top: 15px;
     display: block;
-    width: 45%;
+
     border-radius: 5px;
     border-width: 0px;
   }
 
-  section {
-    margin-left: 2.4%;
-  }
+
 
   section button {
     margin-top: 1%;
@@ -24,10 +22,6 @@
     color: black !important;
   }
 
-  .hide {
-    display: none;
-  }
-
   .set-position {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 0.8fr;
@@ -38,74 +32,75 @@
   }
 </style>
 
-<section style="position:relative;top:30px;">
+<section style="background:white;color:black;padding:2%;">
 
   <div class="container">
     <div class="row">
 
       <div class="col-lg-6 col-md-6 col-lg-6 col-sm-6 col-12" align="center">
-        <img class="dp" style="width:50%" src="https://api.adorable.io/avatars/285/<%=user.firstName%> <%=user.lastName%>.png" alt="">
+        <img class="dp" style="width:50%" src="https://api.adorable.io/avatars/285/<%=user.firstName%> <%=user.lastName%>.png" alt="" >
+
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-12 set-position">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-12 set-position" style="background:#f7f7f7;color:black;padding:2%;border-radius:2%;">
 
         <div class="">
-          <h4>Username: <%=username%></h4>
+          <button type="button" class="btn" name="button"><h5>Username : <strong><%=username%></strong></h5></button>
         </div>
         <div class="">
-          <h4>First Name: <%=user.firstName%></h4>
+          <button type="button" class="btn" name="button"><h5>First Name: <strong><%=user.firstName%></strong></h5></button>
         </div>
         <div class="">
-          <h4>Last Name: <%=user.lastName%></h4>
+          <button type="button" class="btn" name="button"><h5>Last Name: <strong><%=user.lastName%></strong></h5></button>
         </div>
         <div class="">
-          <a href="/seewatchlist" class="btn black btn-warning" style="width:100%">See Your Watchlist!</a>
+          <a href="/seewatchlist" style="width:100%"><button type="button" class="btn btn-warning" style="width:100%" name="button">See Your Watchlist!</button></a>
         </div>
-
 
       </div>
     </div>
   </div>
-
-
-  <div class="dropdown">
-    <a class="settings">Settings?</a>
-
-    <div class="setting-links-custom hide">
-
-      <div class="dropdown setting-links hide">
-          <button class="btn btn-warning change-first-last dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Change First and Last name:
-          </button>
-
-          <form class="hide form-first-last" action="/changeSettings" method="post">
-            <input class="profile-input" type="text" name="firstName" value="<%=user.firstName%>" placeholder="new first name.." required>
-            <input class="profile-input" type="text" name="lastName" value="<%=user.lastName%>" placeholder="new last name..">
-            <button type="submit" class="btn btn-warning" name="button">Change!</button>
-          </form>
-      </div>
-
-      <hr>
-
-      <!-- Change password -->
-      <div class="dropdown setting-links hide">
-          <button class="btn btn-warning change-pass dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Change Password:
-          </button>
-
-          <form class="form-pass hide" action="/changePassword" method="post">
-            <input class="profile-input" type="password" name="newPass" placeholder="new password" required>
-            <input class="profile-input" type="password" name="confirmed" placeholder="confirm new password" required>
-            <button type="submit" class="btn btn-warning" name="button">Confirm! </button>
-          </form>
-      </div>
-
-    </div>
-  </div>
-
 
 </section>
-<hr>
-<hr>
+<section style="background:#f7f7f7;color:black;padding:2%;">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class=" ">
+
+              <p>Change First and Last name:</p>
+
+
+            <div style="margin-bottom:9px;">
+              <form class=" form-first-last" action="/changeSettings" method="post">
+                <input class="form-control profile-input" type="text" name="firstName"  placeholder="First Name" required>
+                <input class="form-control profile-input" type="text" name="lastName"  placeholder="Last Name">
+                <button type="submit" class="btn btn-warning" name="button">Confirm</button>
+              </form>
+            </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <p>Change Password:</p>
+        <div style="margin-bottom:9px;">
+            <form class="form-pass " action="/changePassword" method="post">
+              <input class="form-control profile-input" type="password" name="newPass" placeholder="New Password" required>
+              <input class="form-control profile-input" type="password" name="confirmed" placeholder="Confirm Password" required>
+              <button type="submit" class="btn btn-warning" name="button">Confirm </button>
+            </form>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
 <script type="text/javascript">
   $(".change-pass").click(() => {
     $(".form-pass").toggleClass("hide");

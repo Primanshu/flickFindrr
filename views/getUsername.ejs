@@ -1,8 +1,135 @@
 <%- include("header.ejs") -%>
+<!--Custom styles-->
+<style media="screen">
+  /* Made with love by Mutiullah Samim*/
+@import url('https://fonts.googleapis.com/css?family=Numans');
+html,
+body {
+/* background-size: cover;
+background-repeat: no-repeat; */
+/* height: 100%; */
+background-image: url("/images/sign.jpg") !important ;
+background-size: cover !important;
+/* font-family: 'Numans', sans-serif; */
+}
 
-<form class="" action="/getUsername" method="post">
-  <input type="text" name="newUsername" value="" required>
-  <button type="submit" name="button">Send</button>
-</form>
+.container{
+align-content: center;
+position:absolute;
+top:50%;
+left:50%;
+  transform: translate(-50%, -50%);
+}
+
+.card{
+height: 315px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0,0,0,1) !important;
+}
+
+.card-header h3{
+color: white;
+}
+
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.links{
+color: white;
+}
+
+
+
+a {
+color: #ffcd3c !important;
+}
+
+#custom-nav {
+position: fixed;
+z-index: 10;
+background-color: black;
+width: 100%;
+top: 0;
+}
+
+#custom-nav a:hover {
+text-decoration: none !important;
+transform: scale(1.015);
+transition: transform 1s;
+opacity: 0.915;
+}
+
+#custom-nav a.dropdown-item:hover{
+transform: none;
+}
+
+#custom-nav .navbar-brand {
+font-weight: bold;
+text-transform: capitalize;
+}
+
+
+
+</style>
+<div class="container" style="opacity:0.9">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Enter Username</h3>
+			</div>
+			<div class="card-body">
+				<form action="/getUsername" method="post">
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" name="newUsername" class="form-control" placeholder="Username" required autocomplete="off">
+					</div>
+          <%if(message){%>
+            <p align="center"><%=message%></p>
+          <%}%>
+          <div class="form-group">
+						<input type="submit" value="Sign In" class="btn float-right login_btn">
+					</div>
+				</form>
+        <p style="font-size:13px">*username can't be changed later</p>
+			</div>
+      <div class="card-footer">
+				<div class="justify-content-center links">
+					Please enter a new username to continue with your Google/Facebook account or <a href="/logout">Logout</a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+</div>
+
 
 <%- include("footer.ejs") -%>
