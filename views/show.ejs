@@ -1,12 +1,23 @@
 <%-include("header.ejs")-%>
 
-
+<style media="screen">
+  .container p{
+    color:white;
+  }
+  .container{
+    background:rgb(0,0,0,0.65);
+    padding:2%;
+  }
+  .container h2{
+    margin-top:2.5%;
+  }
+</style>
 <!-- <link rel="stylesheet" href="css/show.css"> -->
-<div class="container">
+<div class="container" style="">
 
-  <h1><%= title%></h1>
+  <h1 align="center"><%= title%></h1>
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" style="border-radius:8px 8px;padding:1.5%;margin:auto">
 
     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-8">
       <img src=" <%=url%>" class="img-poster" alt="No image">
@@ -14,7 +25,7 @@
         .img-poster2 {
           width: 100%;
           transition: 1s;
-          transform: scale(1.05);
+          transform: scale(1.01);
           /* object-fit:fill; */
         }
       </style>
@@ -30,27 +41,21 @@
 
     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12 nested" >
       <div  class="nested-item" >
-        <div class="rating" style="color:#b0b0b0 !important">
-          Rating
-        </div>
-        <div class="ratin">
+
+        <div class="align-rating-genre-type">
           <%= rating%>
         </div>
       </div>
       <div  class="nested-item">
-        <div class="genres" style="color:#b0b0b0 !important">
-          Genres
-        </div>
-        <div class="ratin">
+
+        <div class="align-rating-genre-type">
           <%=genres%>
         </div>
 
       </div>
       <div  class="nested-item">
-        <div class="type" style="color:#b0b0b0 !important">
-          Type
-        </div>
-        <div class="ratin">
+
+        <div class="align-rating-genre-type">
           <%= titleType%>(<%= year%>)
         </div>
       </div>
@@ -108,17 +113,14 @@
   </form>
 
   <h2>Summary</h2>
-  <p><%= summary%>
-
-
-  </p>
+  <p><%= summary%>  </p>
 
 
   <h2>User Reviews</h2>
   <% if(typeof(reviews) != 'undefined'){ %>
 
   <% for(var i=0;i<=1 && i< reviews.length ;i++){ %>
-  <h4><%=reviews[i].reviewTitle%></h4>
+  <h5><%=reviews[i].reviewTitle%></h5>
   <p>By <%= reviews[i].author.displayName %> on <%=reviews[i].submissionDate%></p>
   <p><%=reviews[i].reviewText.substring(0,500)%><%if(reviews[i].reviewText.length > 500){%><a href="#p<%=i%>" id="<%=i%>"><i>.....Read more</i></a><span style="display : none;" id="p<%=i%>"><%=reviews[i].reviewText.substring(500)%></span>
     <%}%>
@@ -197,7 +199,7 @@
 
       </li>
     <%});%>
-      <li id="logInFirst" style="display:none;margin-left:80px;color:#bfbfbf">
+      <li id="logInFirst" style="display:none;color:#bfbfbf">
         <p>You need to log in first. Click <a href="/signin"><i>here</i></a> to login.</p>
       </li>
     </ul>
@@ -211,7 +213,7 @@
           var commentId = $(this).attr('name');
           console.log(commentId);
           if ("<%=auth%>" == "false") { //checking if user is logged in or not
-            $(this).text("login first");
+            $(this).html("<p>Please login continue</p>");
           } else {
             if ($(this).val() == "liked") { //checking if the post is already liked by the current user
               // $(this).text("already liked");
@@ -268,12 +270,16 @@
       });
     </script>
 
+    <div class="row">
+      <div class="col-lg-6 col-md-8 col-sm-12">
+        <form class="comment-send" action="">
+          <input type="hidden" name="titleId" value="<%=titleId%>">
+          <textarea id="commentBody" type="text" class="form-control" rows="4" name="body" placeholder="Your Views?" maxlength="750" rows="1" required></textarea><br>
+          <button type="submit" class="btn btn-warning" name="button" style="margin-top: -10px">Submit</button>
+        </form>
+      </div>
+    </div>
 
-    <form class="comment-send" action="">
-      <input type="hidden" name="titleId" value="<%=titleId%>">
-      <textarea id="commentBody" type="text" class="form-control" rows="4" name="body" placeholder="Your Views?" maxlength="750" rows="1" required></textarea><br>
-      <button type="submit" class="btn btn-warning" name="button" style="margin-top: -10px">Submit</button>
-    </form>
 
     <script type="text/javascript">
       $(document).ready(function() {

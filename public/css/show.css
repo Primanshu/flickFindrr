@@ -7,13 +7,17 @@
 .nested{
   display:grid;
   grid-template-rows: auto;
+  padding: 2%;
 }
 
 .nested-item{
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns:  1fr;
   font-size: 3vw;
-  color: white;
+  background:#ededed;
+  border-radius: 8px 8px;
+  margin:0.5%;
+  color: black;
 }
 .display-pic{
   border-radius: 50%;
@@ -49,18 +53,14 @@
   width: 100%;
   /* text-align: center; */
 }
-.ratin{
+.align-rating-genre-type{
   width: 100%;
   margin: auto;
   text-align: center;
   overflow:auto;
 }
-.comment-send{
-  position: relative;
-  left:120px;
-}
+
 .comment-send textarea {
-  width: 45%;
   resize: none;
   height: 100px;
 }
