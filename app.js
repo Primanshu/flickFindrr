@@ -332,7 +332,6 @@ app.get("/seewatchlist", function(req, res) {
           user: {firstName : req.authCustom.firstName,lastName : req.authCustom.lastName}
         })
       } else {
-        console.log(req.user.wishList);
         res.render("watchlist", {
           watchList: req.user.wishList,
           username: req.authCustom.username,
