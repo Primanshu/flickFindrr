@@ -22,3 +22,5 @@ module.exports = new GoogleStrategy({
     });
   }
 )
+// https://flickfindrr.herokuapp.com/auth/google/imdb-project
+// http://localhost:3000/auth/google/imdb-project
